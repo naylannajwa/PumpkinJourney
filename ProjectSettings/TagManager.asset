@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 3
+  tags:
+  - Ground
+  - Skull
+  - DeadZone
+  - Key
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Ground
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Button
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: New Bg 0
+    uniqueID: 2688343543
+    locked: 0
+  - name: New Bg 1
+    uniqueID: 897232399
+    locked: 0
+  - name: Bg Moon
+    uniqueID: 3106970051
+    locked: 0
+  - name: New Bg 2
+    uniqueID: 3635221505
+    locked: 0
+  - name: New Bg 3
+    uniqueID: 2455344969
+    locked: 0
+  - name: New Bg 4
+    uniqueID: 3481065747
+    locked: 0
+  - name: New Bg 5
+    uniqueID: 321360607
+    locked: 0
+  - name: New Bg 6
+    uniqueID: 1238063767
+    locked: 0
+  - name: New Bg 7
+    uniqueID: 227976435
+    locked: 0
+  - name: New Bg 8
+    uniqueID: 1695139033
+    locked: 0
+  - name: Bg Home
+    uniqueID: 1629641139
+    locked: 0
+  - name: Bg Tree
+    uniqueID: 295136885
+    locked: 0
+  - name: Deadzone
+    uniqueID: 4095280027
+    locked: 0
+  - name: Adds
+    uniqueID: 3443968779
+    locked: 0
+  - name: Door
+    uniqueID: 2476118195
+    locked: 0
+  - name: Koin
+    uniqueID: 1204440019
+    locked: 0
+  - name: Ground
+    uniqueID: 2095926559
+    locked: 0
+  - name: Skull
+    uniqueID: 4017832383
+    locked: 0
+  - name: Player
+    uniqueID: 3170724631
+    locked: 0
+  - name: Bg Front
+    uniqueID: 263669313
+    locked: 0
+  - name: New Bg 9
+    uniqueID: 1200987529
+    locked: 0
+  - name: Key1
+    uniqueID: 1468173399
+    locked: 0
+  - name: Key
+    uniqueID: 2947799067
+    locked: 0
+  m_RenderingLayers:
+  - Default

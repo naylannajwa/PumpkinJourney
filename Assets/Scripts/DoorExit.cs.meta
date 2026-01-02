@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 60bea6f9338100a49aabaa158575f7a8
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - doorLockedPanel: {fileID: 1686764947187919785, guid: 2e7937b0c4315a2449d2c30c8aa08c9f, type: 3}
+  - doorUnlockedPanel: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

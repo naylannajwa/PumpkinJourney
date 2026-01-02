@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08462ea52b29a094cabb041d1881c99b, type: 3}
+  m_Name: Level1QuizData
+  m_EditorClassIdentifier: Assembly-CSharp::QuizData
+  questions:
+  - question: Aku selalu basah tapi tidak pernah tenggelam. Siapa aku?
+    answerA: Ikan
+    answerB: Bayangan
+    answerC: Lidah
+    answerD: Handuk
+    correctAnswerIndex: 2
+    correctFeedback: "\u2705 Benar! Lidah memang selalu basah tapi tidak tenggelam!"
+    wrongFeedback: "\u274C Salah! Coba pikirkan bagian tubuh yang selalu basah..."
+  - question: Aku punya kaki tapi tidak bisa berjalan. Siapa aku?
+    answerA: Kursi
+    answerB: Meja
+    answerC: Manusia
+    answerD: Sepatu
+    correctAnswerIndex: 0
+    correctFeedback: "\u2705 Pintar! Kursi memiliki kaki tapi tidak bisa berjalan!"
+    wrongFeedback: "\u274C Hmm, bukan itu. Pikirkan furniture di rumah..."
+  - question: Aku bisa terbang tanpa sayap, menangis tanpa mata. Siapa aku?
+    answerA: Kursi
+    answerB: Meja
+    answerC: Manusia
+    answerD: Sepatu
+    correctAnswerIndex: 0
+    correctFeedback: "\u2705 Pintar! Kursi memiliki kaki tapi tidak bisa berjalan!"
+    wrongFeedback: "\u274C Hmm, bukan itu. Pikirkan furniture di rumah..."
+  requiredCorrectAnswers: 3

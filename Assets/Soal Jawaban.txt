@@ -1,0 +1,115 @@
+# LEVEL 1: Misteri Dunia Hewan
+
+Hewan apa yang bisa terbang dan bertelur?
++Burung
++Ikan
++Kucing
++Anjing
+Burung
+Benar! Burung bisa terbang dan bertelur. Kamu pintar!
+Salah! Burung yang bisa terbang dan bertelur. Jawaban yang benar adalah Burung.
+
+Hewan apa yang hidup di air dan punya sirip?
++Ikan
++Burung
++Kucing
++Sapi
+Ikan
+Hebat! Ikan hidup di air dan punya sirip untuk berenang.
+Salah! Ikan yang hidup di air dan punya sirip. Jawaban yang benar adalah Ikan.
+
+Hewan apa yang punya belalai panjang?
++Gajah
++Singa
++Harimau
++Beruang
+Gajah
+Bagus! Gajah punya belalai panjang yang bisa menyemprot air.
+Salah! Gajah yang punya belalai panjang. Jawaban yang benar adalah Gajah.
+
+# LEVEL 2: Teka-Teki Alam Semesta
+
+Apa yang bersinar di langit pada malam hari?
++Bulan
++Matahari
++Bintang
++Awan
+Bintang
+Benar! Bintang-bintang bersinar di langit malam hari.
+Salah! Bintang yang bersinar di langit malam. Jawaban yang benar adalah Bintang.
+
+Apa yang kita gunakan untuk melihat?
++Mata
++Telinga
++Hidung
++Mulut
+Mata
+Hebat! Kita menggunakan mata untuk melihat segala sesuatu.
+Salah! Mata yang kita gunakan untuk melihat. Jawaban yang benar adalah Mata.
+
+Apa yang turun dari langit saat hujan?
++Air
++Salju
++Angin
++Cahaya
+Air
+Bagus! Air hujan turun dari langit saat cuaca hujan.
+Salah! Air yang turun dari langit saat hujan. Jawaban yang benar adalah Air.
+
+# LEVEL 3: Misteri Warna dan Bentuk
+
+Warna apa yang dihasilkan campuran semua warna?
++Putih
++Hitam
++Merah
++Biru
+Putih
+Benar! Campuran semua warna menghasilkan warna putih.
+Salah! Putih yang dihasilkan campuran semua warna. Jawaban yang benar adalah Putih.
+
+Bentuk apa yang punya 4 sudut sama panjang?
++Segitiga
++Persegi
++Lingkaran
++Oval
+Persegi
+Hebat! Persegi punya 4 sudut yang sama panjang.
+Salah! Persegi yang punya 4 sudut sama panjang. Jawaban yang benar adalah Persegi.
+
+Warna apa yang ada pada pelangi?
++7 warna
++3 warna
++5 warna
++10 warna
+7 warna
+Bagus! Pelangi memiliki 7 warna yang indah.
+Salah! 7 warna yang ada pada pelangi. Jawaban yang benar adalah 7 warna.
+
+# LEVEL 4: Teka-Teki Pengetahuan Umum
+
+Berapa jumlah planet di tata surya kita?
++7
++8
++9
++10
+8
+Benar! Tata surya kita memiliki 8 planet.
+Salah! 8 yang jumlah planet di tata surya kita. Jawaban yang benar adalah 8.
+
+Apa yang kita pakai untuk mendengar suara?
++Telinga
++Mata
++Hidung
++Mulut
+Telinga
+Hebat! Kita menggunakan telinga untuk mendengar suara.
+Salah! Telinga yang kita pakai untuk mendengar suara. Jawaban yang benar adalah Telinga.
+
+Hari apa yang ada di antara Sabtu dan Senin?
++Minggu
++Jumat
++Rabu
++Kamis
+Minggu
+Bagus! Minggu ada di antara Sabtu dan Senin.
+Salah! Minggu yang ada di antara Sabtu dan Senin. Jawaban yang benar adalah Minggu.
