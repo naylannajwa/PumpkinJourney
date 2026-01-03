@@ -971,8 +971,8 @@ RectTransform:
   - {fileID: 1922817216}
   - {fileID: 807524554}
   - {fileID: 2139921367}
-  - {fileID: 1243856498}
   - {fileID: 791249101}
+  - {fileID: 1243856498}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1787,10 +1787,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelCompleteCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8693637885494642603, guid: 93e480abd598753489cd48ef94b86882, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1818,9 +1814,17 @@ PrefabInstance:
       value: Managers
       objectReference: {fileID: 0}
     - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: levelToUnlock
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: doorOpenSprite
       value: 
       objectReference: {fileID: 632166846}
+    - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: nextLevelScene
+      value: gameplay2
+      objectReference: {fileID: 0}
     - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: doorLockedPanel
       value: 
@@ -2106,10 +2110,6 @@ PrefabInstance:
     - target: {fileID: 2397192293337494759, guid: bdf7356a557dace49aff3ea2a604e758, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 2397192293337494759, guid: bdf7356a557dace49aff3ea2a604e758, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3949203448960150440, guid: bdf7356a557dace49aff3ea2a604e758, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

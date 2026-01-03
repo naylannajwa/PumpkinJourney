@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class DoorExit : MonoBehaviour
 {
     [Header("Settings")]
-    public string nextLevelScene = "Level2";
+    public string nextLevelScene = "gameplay2";
     public int levelToUnlock = 2;
 
     [Header("Door Sprites")]
@@ -24,6 +24,8 @@ public class DoorExit : MonoBehaviour
 
     void Start()
     {
+        Debug.Log($"[DoorExit] 🚪 DoorExit script started! nextLevelScene: {nextLevelScene}, levelToUnlock: {levelToUnlock}");
+
         // Set door state berdasarkan key status
         UpdateDoorVisual();
     }
@@ -62,7 +64,10 @@ public class DoorExit : MonoBehaviour
             {
                 // SUDAH punya kunci - LANGSUNG SHOW LEVEL COMPLETE!
                 Debug.Log("[DoorExit] 🎉 Player has key! Showing level complete screen...");
-                
+
+                // 🔧 Unlock next level SEBELUM show level complete!
+                UnlockNextLevel();
+
                 // Hide semua panel lama
                 if (doorLockedPanel != null)
                     doorLockedPanel.SetActive(false);
@@ -193,8 +198,7 @@ public class DoorExit : MonoBehaviour
         if (GameManager.Instance.HasKey())
         {
             // Unlock next level
-            PlayerPrefs.SetInt("Level" + levelToUnlock + "Unlocked", 1);
-            PlayerPrefs.Save();
+            UnlockNextLevel();
 
             Debug.Log($"[DoorExit] Loading {nextLevelScene}...");
             GameManager.Instance.LoadLevel(nextLevelScene);
@@ -211,5 +215,22 @@ public class DoorExit : MonoBehaviour
     public void OnKeyCollected()
     {
         UpdateDoorVisual();
+    }
+
+    /// <summary>
+    /// Unlock next level and save to PlayerPrefs
+    /// </summary>
+    void UnlockNextLevel()
+    {
+        PlayerPrefs.SetInt("Level" + levelToUnlock + "Unlocked", 1);
+        PlayerPrefs.Save();
+        Debug.Log($"[DoorExit] ✅ Unlocked Level{levelToUnlock}! Key: Level{levelToUnlock}Unlocked = 1");
+
+        // 🔧 DEBUG: Cek semua level unlock status
+        for (int i = 1; i <= 4; i++)
+        {
+            int status = PlayerPrefs.GetInt($"Level{i}Unlocked", 0);
+            Debug.Log($"[DoorExit] 🔍 Level{i} Unlocked Status: {status}");
+        }
     }
 }

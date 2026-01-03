@@ -18,6 +18,8 @@ public class LevelSelectManager : MonoBehaviour
     
     void Start()
     {
+        Debug.Log("[LevelSelectManager] 🎮 LevelSelectManager script started!");
+
         // CEK APAKAH INI GAME BARU
         CheckForNewGame();
 
@@ -70,24 +72,30 @@ public class LevelSelectManager : MonoBehaviour
         Debug.Log("🔒 All level locks reset - Only Level 1 unlocked");
     }
 
-    void InitializeLevelButtons()
+    public void InitializeLevelButtons()
     {
         // Level 1 always unlocked
         PlayerPrefs.SetInt("Level1Unlocked", 1);
-        
+
+        Debug.Log("[LevelSelectManager] 🔄 Initializing level buttons...");
+
         foreach (LevelButton level in levels)
         {
             bool isUnlocked = PlayerPrefs.GetInt("Level" + level.levelNumber + "Unlocked", 0) == 1;
-            
+
+            Debug.Log($"[LevelSelectManager] 🎯 Level {level.levelNumber}: Unlocked = {isUnlocked}, Scene = {level.sceneName}");
+
             level.button.interactable = isUnlocked;
             level.lockIcon.SetActive(!isUnlocked);
-             
+
             if (isUnlocked)
             {
                 string sceneName = level.sceneName;
                 level.button.onClick.AddListener(() => LoadLevel(sceneName));
             }
         }
+
+        Debug.Log("[LevelSelectManager] ✅ Level buttons initialized!");
     }
     
     void LoadLevel(string sceneName)
@@ -111,4 +119,5 @@ public class LevelSelectManager : MonoBehaviour
 
         Debug.Log("✅ Game force reset completed!");
     }
+
 }

@@ -7,6 +7,7 @@ public class MainMenuManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("[MainMenuManager] 🏠 MainMenuManager script started!");
         levelSelectPanel.SetActive(false);
     }
 
@@ -24,14 +25,54 @@ public class MainMenuManager : MonoBehaviour
         }
     }
 
+    // Di MainMenuManager - ubah OpenLevelSelect()
     public void OpenLevelSelect()
     {
         levelSelectPanel.SetActive(true);
+
+        // 🔧 DEBUG: Cek semua PlayerPrefs unlock status
+        Debug.Log("🏠 [MainMenu] === PLAYERPREFS DEBUG ===");
+        for (int i = 1; i <= 4; i++)
+        {
+            int status = PlayerPrefs.GetInt($"Level{i}Unlocked", 0);
+            Debug.Log($"🏠 [MainMenu] Level{i}Unlocked = {status}");
+        }
+        Debug.Log("🏠 [MainMenu] === END DEBUG ===");
+
+        // TAMBAH: Force refresh level buttons
+        LevelSelectManager levelManager = FindObjectOfType<LevelSelectManager>();
+        if (levelManager != null)
+        {
+            levelManager.InitializeLevelButtons();
+            Debug.Log("🔄 Level select refreshed!");
+        }
     }
 
     public void CloseLevelSelect()
     {
         levelSelectPanel.SetActive(false);
+    }
+
+    // 🔧 DEBUG: Method untuk force unlock semua level (untuk testing)
+    public void ForceUnlockAllLevels()
+    {
+        Debug.Log("🔓 [DEBUG] Force unlocking all levels...");
+
+        for (int i = 1; i <= 4; i++)
+        {
+            PlayerPrefs.SetInt($"Level{i}Unlocked", 1);
+            Debug.Log($"🔓 [DEBUG] Force unlocked Level{i}");
+        }
+
+        PlayerPrefs.Save();
+
+        // Refresh level select
+        LevelSelectManager levelManager = FindObjectOfType<LevelSelectManager>();
+        if (levelManager != null)
+        {
+            levelManager.InitializeLevelButtons();
+            Debug.Log("🔄 Level select refreshed after force unlock!");
+        }
     }
 
     // TAMBAH: Method untuk reset game progress (untuk demo)
