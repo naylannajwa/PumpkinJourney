@@ -82,13 +82,31 @@ public class DoorExit : MonoBehaviour
                 }
                 
                 // Show level complete screen
+                LevelCompleteManager.EnsureInstance(); // Pastikan instance ada
+
                 if (LevelCompleteManager.Instance != null)
                 {
                     LevelCompleteManager.Instance.ShowLevelComplete();
+                    Debug.Log("[DoorExit] ✅ Level complete screen shown!");
                 }
                 else
                 {
-                    Debug.LogError("[DoorExit] LevelCompleteManager.Instance is NULL!");
+                    // Fallback: cari di scene
+                    LevelCompleteManager lcm = FindObjectOfType<LevelCompleteManager>();
+                    if (lcm != null)
+                    {
+                        lcm.ShowLevelComplete();
+                        Debug.Log("[DoorExit] ✅ Level complete found via FindObjectOfType!");
+                    }
+                    else
+                    {
+                        Debug.LogError("[DoorExit] ❌ LevelCompleteManager not found in scene!");
+                        // Emergency fallback: load next level langsung
+                        if (GameManager.Instance != null)
+                        {
+                            GameManager.Instance.LoadLevel("gameplay2");
+                        }
+                    }
                 }
             }
             else
