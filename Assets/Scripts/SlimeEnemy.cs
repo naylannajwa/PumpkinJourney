@@ -106,13 +106,15 @@ public class SlimeEnemy : MonoBehaviour
         if (distanceToPlayer <= detectionRange)
         {
             isChasingPlayer = true;
-            
+
             // SIDE ATTACK: Hanya attack jika player tidak sedang di atas slime
             if (distanceToPlayer <= attackRange && canAttack)
             {
                 // Double check: pastikan player tidak di atas slime
                 bool isPlayerAbove = player.position.y > transform.position.y + 0.5f;
-                
+
+                Debug.Log($"🎯 Player in attack range! Distance: {distanceToPlayer}, Above: {isPlayerAbove}, CanAttack: {canAttack}");
+
                 if (!isPlayerAbove) // Hanya attack jika player TIDAK di atas
                 {
                     Debug.Log("💥 SIDE ATTACK! Player in range - attacking!");
@@ -122,6 +124,10 @@ public class SlimeEnemy : MonoBehaviour
                 {
                     Debug.Log("🎯 Player above slime - waiting for jump attack collision");
                 }
+            }
+            else if (distanceToPlayer <= attackRange && !canAttack)
+            {
+                Debug.Log($"⏳ Attack on cooldown. Distance: {distanceToPlayer}, CanAttack: {canAttack}");
             }
         }
         else
@@ -191,23 +197,29 @@ public class SlimeEnemy : MonoBehaviour
     void AttackPlayer()
     {
         canAttack = false;
-        
-        Debug.Log("🐸 SIDE ATTACK - Slime attacking player!");
-        
+
+        Debug.Log("🐸 SIDE ATTACK - Slime attacking player! Calling TakeDamage()");
+
         // Deal damage to player - PLAYER KEHILANGAN NYAWA
         PumpkinMovement playerScript = player.GetComponent<PumpkinMovement>();
         if (playerScript != null)
         {
+            Debug.Log("🎯 Player script found, calling TakeDamage()");
             playerScript.TakeDamage(); // Player nyawa berkurang
-            
+
             Vector2 knockbackDir = (player.position - transform.position).normalized;
             Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
             if (playerRb != null)
             {
                 playerRb.AddForce(knockbackDir * knockbackForce, ForceMode2D.Impulse);
+                Debug.Log($"💥 Applied knockback force: {knockbackDir * knockbackForce}");
             }
         }
-        
+        else
+        {
+            Debug.LogError("❌ Player script not found! Cannot deal damage");
+        }
+
         StartCoroutine(ResetAttack());
     }
     

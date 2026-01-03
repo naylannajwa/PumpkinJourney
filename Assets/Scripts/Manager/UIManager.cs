@@ -30,6 +30,12 @@ public class UIManager : MonoBehaviour
 
         [Header("Coin Display")] // TAMBAH INI
     public TextMeshProUGUI coinDisplayText; // Assign dari Inspector
+
+    [Header("Health Display")] // TAMBAH INI
+    public Image healthDisplay; // Single image untuk health display
+    public Sprite heart1Full; // 3 nyawa - bar penuh
+    public Sprite heart2Partial; // 2 nyawa - bar kosong sedikit
+    public Sprite heart3Empty; // 1 nyawa - bar kosong setengah
     
     void Awake()
     {
@@ -62,8 +68,9 @@ public class UIManager : MonoBehaviour
         
         Debug.Log("✅ UIManager Start complete!");
 
-        // TAMBAH: Initialize coin display
+        // TAMBAH: Initialize displays
         UpdateCoinDisplay(0);
+        UpdateHealthDisplay(3); // Default 3 nyawa
     }
 
     public void UpdateCoinDisplay(int coinCount)
@@ -78,7 +85,84 @@ public class UIManager : MonoBehaviour
             Debug.LogError("❌ Coin display text not assigned!");
         }
     }
-    
+
+    // TAMBAH: Method untuk update health display
+    // Sistem sederhana: Setiap heart merepresentasikan 1 nyawa
+    public void UpdateHealthDisplay(int currentHealth)
+    {
+        if (healthDisplay == null)
+        {
+            Debug.LogError("❌ Health display not assigned!");
+            return;
+        }
+
+        Debug.Log($"❤️ Updating health display - Current health: {currentHealth}");
+
+        // Ganti sprite berdasarkan health
+        switch (currentHealth)
+        {
+            case 3:
+                // 3 nyawa - tampilkan heart1 (bar penuh)
+                if (heart1Full != null)
+                {
+                    healthDisplay.sprite = heart1Full;
+                    healthDisplay.color = Color.white;
+                    Debug.Log("❤️❤️❤️ Heart1 Full - 3 nyawa");
+                }
+                else
+                {
+                    Debug.LogError("❌ Heart1 Full sprite not assigned!");
+                }
+                break;
+
+            case 2:
+                // 2 nyawa - tampilkan heart2 (bar kosong sedikit)
+                if (heart2Partial != null)
+                {
+                    healthDisplay.sprite = heart2Partial;
+                    healthDisplay.color = Color.white;
+                    Debug.Log("❤️❤️ Heart2 Partial - 2 nyawa");
+                }
+                else
+                {
+                    Debug.LogError("❌ Heart2 Partial sprite not assigned!");
+                }
+                break;
+
+            case 1:
+                // 1 nyawa - tampilkan heart3 (bar kosong setengah)
+                if (heart3Empty != null)
+                {
+                    healthDisplay.sprite = heart3Empty;
+                    healthDisplay.color = Color.white;
+                    Debug.Log("❤️ Heart3 Empty - 1 nyawa");
+                }
+                else
+                {
+                    Debug.LogError("❌ Heart3 Empty sprite not assigned!");
+                }
+                break;
+
+            case 0:
+            default:
+                // 0 nyawa atau error - bisa hide atau tampil kosong
+                if (heart3Empty != null)
+                {
+                    healthDisplay.sprite = heart3Empty;
+                    healthDisplay.color = new Color(1f, 1f, 1f, 0.5f); // Semi-transparent
+                    Debug.Log("💀 All hearts empty - 0 nyawa");
+                }
+                else
+                {
+                    healthDisplay.gameObject.SetActive(false);
+                    Debug.Log("💀 Health display hidden - no sprites assigned");
+                }
+                break;
+        }
+
+        Debug.Log($"❤️ Health display updated: {currentHealth}/3");
+    }
+
     // =============================================
     // PRESS E ICON - Show/Hide dengan optional text
     // =============================================

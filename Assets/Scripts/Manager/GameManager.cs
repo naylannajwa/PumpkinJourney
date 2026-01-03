@@ -124,7 +124,27 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("⚠️ UIManager not found - coin display not updated");
         }
     }
-    
+
+    // TAMBAH: Method untuk update health display
+    public void UpdateHealthDisplay()
+    {
+        // TAMBAH: Update health display saat health berubah
+        if (UIManager.Instance != null)
+        {
+            // Cari player dan dapatkan health
+            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null)
+            {
+                PumpkinMovement playerScript = playerObj.GetComponent<PumpkinMovement>();
+                if (playerScript != null)
+                {
+                    int currentHealth = playerScript.GetHealthPoints();
+                    UIManager.Instance.UpdateHealthDisplay(currentHealth);
+                }
+            }
+        }
+    }
+
     void UpdateAllDoors()
     {
         // Find all doors in scene and update visual

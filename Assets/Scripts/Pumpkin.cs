@@ -30,6 +30,17 @@ public class PumpkinMovement : MonoBehaviour
     private int healthPoints = 3; // 3 NYAWA
     private bool isDead;
     private bool facingRight = true;
+
+    // TAMBAH: Method untuk get health points
+    public int GetHealthPoints()
+    {
+        return healthPoints;
+    }
+
+    public int GetMaxHealthPoints()
+    {
+        return 3; // Karena default 3 nyawa
+    }
     private Vector3 localScale;
     private bool isGrounded;
     private bool isSliding;
@@ -85,6 +96,12 @@ public class PumpkinMovement : MonoBehaviour
         // Reset health dan state
         healthPoints = 3; // RESET KE 3 NYAWA
         isDead = false;
+
+        // TAMBAH: Update health display saat reset
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.UpdateHealthDisplay();
+        }
         
         // Reset movement state
         currentSpeed = 0;
@@ -331,21 +348,71 @@ public class PumpkinMovement : MonoBehaviour
         }
     }
 
-    // UPDATED: TakeDamage dengan health system 3 nyawa
+    // UPDATED: TakeDamage - setiap kali pumpkin jadi merah, nyawa berkurang 1
     public void TakeDamage()
     {
-        if (isDead) return;
+        if (isDead)
+        {
+            Debug.Log("💀 Player already dead, ignoring damage");
+            return;
+        }
 
+        Debug.Log("🎃 Player terkena damage - memulai efek merah");
+
+        // TAMBAH: Visual feedback - screen flash effect (sprite jadi merah)
+        // EFEK MERAH yang akan mengurangi nyawa saat selesai
+        StartCoroutine(DamageFlash());
+    }
+
+    // TAMBAH: Screen flash effect saat take damage
+    // SETIAP KALI EFEK MERAH SELESAI, NYAWA BERKURANG 1
+    IEnumerator DamageFlash()
+    {
+        Debug.Log("⚡ Starting damage flash effect (pumpkin jadi merah)");
+
+        // Flash merah pada sprite renderer
+        if (spriteRenderer != null)
+        {
+            Color originalColor = spriteRenderer.color;
+            spriteRenderer.color = Color.red;
+
+            yield return new WaitForSeconds(0.1f);
+
+            spriteRenderer.color = originalColor;
+        }
+
+        // SETIAP KALI EFEK MERAH SELESAI → NYAWA BERKURANG 1
+        Debug.Log("🔴 Efek merah selesai - nyawa berkurang 1");
+        LoseOneHealth();
+
+        // Optional: Camera shake effect (jika ada camera controller)
+        // Camera.main.transform.DOShakePosition(0.2f, 0.1f);
+
+        Debug.Log("⚡ Damage flash effect completed");
+    }
+
+    // TAMBAH: Method untuk kurangi nyawa 1 (dipanggil setelah efek merah)
+    void LoseOneHealth()
+    {
+        int oldHealth = healthPoints;
         healthPoints--; // Kurangi 1 nyawa
-        
-        Debug.Log($"🎃 Player took damage! Health: {healthPoints}/3");
 
-        if (healthPoints > 0) 
+        Debug.Log($"❤️ NYAWA BERKURANG! Health: {oldHealth} → {healthPoints}/3");
+
+        // TAMBAH: Update UI health display
+        if (GameManager.Instance != null)
         {
-            StartCoroutine(Hurt()); 
-        } 
-        else 
+            GameManager.Instance.UpdateHealthDisplay();
+        }
+
+        if (healthPoints > 0)
         {
+            Debug.Log("🤕 Player masih hidup - hurt animation");
+            StartCoroutine(Hurt());
+        }
+        else
+        {
+            Debug.Log("💀 Nyawa habis! Player mati");
             Die();
         }
     }
