@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlimeEnemy
   moveSpeed: 3
-  patrolDistance: 7
+  patrolDistance: 5
   detectionRange: 7
   attackRange: 1.5
   attackCooldown: 2

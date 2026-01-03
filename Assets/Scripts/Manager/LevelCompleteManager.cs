@@ -60,12 +60,16 @@ public class LevelCompleteManager : MonoBehaviour
     public void ShowLevelComplete()
     {
         Debug.Log("🎯 ShowLevelComplete() called");
-        
+
+        // PAUSE GAME saat panel muncul
+        Time.timeScale = 0f;
+        Debug.Log("⏸️ Game paused for level complete screen");
+
         if (levelCompletePanel != null)
         {
             levelCompletePanel.SetActive(true);
             Debug.Log("✅ Level complete panel activated");
-            
+
             if (coinText != null && GameManager.Instance != null)
             {
                 coinText.text = $"{GameManager.Instance.GetCoinCount()}";
@@ -75,11 +79,11 @@ public class LevelCompleteManager : MonoBehaviour
             {
                 Debug.LogError("❌ Coin text or GameManager is null!");
             }
-            
+
             DebugButtonState(nextButton, "Next");
             DebugButtonState(restartButton, "Restart");
             DebugButtonState(menuButton, "Menu");
-            
+
             Debug.Log("🎉 Level Complete Screen Shown!");
         }
         else
