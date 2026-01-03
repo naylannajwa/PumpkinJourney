@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI; // Tambahkan untuk Button
 using TMPro;
 
 /// <summary>
@@ -15,6 +16,10 @@ public class UIManager : MonoBehaviour
     
     [Tooltip("TextMeshPro untuk text 'Tekan E untuk...' (OPTIONAL)")]
     public TextMeshProUGUI pressEText;
+
+    [Header("Pause Button")] // TAMBAH INI
+    [Tooltip("Tombol pause di UI gameplay")]
+    public Button pauseButton;
 
     [Header("Key Collected Notification")]
     [Tooltip("Panel untuk notifikasi kunci dikumpulkan")]
@@ -43,6 +48,13 @@ public class UIManager : MonoBehaviour
     {
         // Hide Press E panel at start
         HidePressEIcon();
+        
+        // Setup pause button - TAMBAH INI
+        if (pauseButton != null)
+        {
+            pauseButton.onClick.AddListener(OnPauseButtonClicked);
+            Debug.Log("🔘 Pause button setup complete!");
+        }
         
         Debug.Log("✅ UIManager Start complete!");
     }
@@ -100,6 +112,28 @@ public class UIManager : MonoBehaviour
         {
             pressEPanel.SetActive(false);
             Debug.Log("⌨️ Press E panel hidden!");
+        }
+    }
+    
+    // =============================================
+    // PAUSE BUTTON - TAMBAH INI
+    // =============================================
+    
+    /// <summary>
+    /// Handler untuk tombol pause di UI
+    /// </summary>
+    public void OnPauseButtonClicked()
+    {
+        Debug.Log("🔘 Pause button clicked!");
+        
+        // Panggil PauseManager untuk pause game
+        if (PauseManager.Instance != null)
+        {
+            PauseManager.Instance.PauseGame();
+        }
+        else
+        {
+            Debug.LogError("❌ PauseManager not found!");
         }
     }
     
