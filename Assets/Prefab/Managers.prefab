@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3668530297939767132
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7965428196109974020}
+  - component: {fileID: 1943062679096256251}
+  m_Layer: 0
+  m_Name: PauseManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7965428196109974020
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668530297939767132}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7769083978563586698}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1943062679096256251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668530297939767132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b4d6e7e92230ce4c89004555075589b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseManager
+  pausePanel: {fileID: 0}
+  pauseText: {fileID: 0}
+  resumeButton: {fileID: 0}
+  restartButton: {fileID: 0}
+  homeButton: {fileID: 0}
+  homeSceneName: homePage
 --- !u!1 &3807117923411473522
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 177192628192048663}
-  - component: {fileID: 8498276225892429378}
+  - component: {fileID: 7111347820872715131}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -118,7 +168,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7769083978563586698}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8498276225892429378
+--- !u!114 &7111347820872715131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,11 +177,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4684588254906407791}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ede9d2f7f6ab79e49b38a076462e59bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 7652fa15ae6c797478ca7e5886cb9a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   keyCollectedPanel: {fileID: 0}
-  notificationDuration: 2
+  notificationDuration: 1
 --- !u!1 &5415783699414516736
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,6 +214,7 @@ Transform:
   - {fileID: 358785111207756135}
   - {fileID: 177192628192048663}
   - {fileID: 3822595281330862294}
+  - {fileID: 7965428196109974020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6486562847557889486
@@ -177,6 +228,7 @@ GameObject:
   - component: {fileID: 358785111207756135}
   - component: {fileID: 2157588555028530289}
   - component: {fileID: 5768792873482787346}
+  - component: {fileID: 7712146161846272892}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -224,7 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bea6f9338100a49aabaa158575f7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoorExit
-  nextLevelScene: level2
+  nextLevelScene: gameplay2
   levelToUnlock: 2
   doorClosedSprite: {fileID: 0}
   doorOpenSprite: {fileID: 0}
@@ -233,3 +285,25 @@ MonoBehaviour:
   glowIntensity: 0.5
   doorLockedPanel: {fileID: 0}
   doorUnlockedPanel: {fileID: 0}
+--- !u!114 &7712146161846272892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6486562847557889486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40e3a93b34599e4d99c94b6fc0dc407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIManager
+  pressEPanel: {fileID: 0}
+  pressEText: {fileID: 0}
+  pauseButton: {fileID: 0}
+  keyCollectedPanel: {fileID: 0}
+  notificationDuration: 1
+  coinDisplayText: {fileID: 0}
+  healthDisplay: {fileID: 0}
+  heart1Full: {fileID: -5099292496197868168, guid: f2d471d112ed76f489a597b98c94ecba, type: 3}
+  heart2Partial: {fileID: -2966200626249415253, guid: 67570ab659865c748b7c22073d63370b, type: 3}
+  heart3Empty: {fileID: -1540426309290004842, guid: 5ea8cd02dd4b173428e2eb4b98d1e361, type: 3}

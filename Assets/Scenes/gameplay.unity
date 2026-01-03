@@ -130,52 +130,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
---- !u!1 &26480016 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6486562847557889486, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+--- !u!114 &26480020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7712146161846272892, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
   m_PrefabInstance: {fileID: 7639171888274520860}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &26480020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26480016}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e40e3a93b34599e4d99c94b6fc0dc407, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
-  pressEPanel: {fileID: 0}
-  pressEText: {fileID: 0}
-  pauseButton: {fileID: 1274426941}
-  keyCollectedPanel: {fileID: 2139921366}
-  notificationDuration: 1
-  coinDisplayText: {fileID: 66077930}
-  healthDisplay: {fileID: 791249102}
-  heart1Full: {fileID: -5099292496197868168, guid: f2d471d112ed76f489a597b98c94ecba, type: 3}
-  heart2Partial: {fileID: -2966200626249415253, guid: 67570ab659865c748b7c22073d63370b, type: 3}
-  heart3Empty: {fileID: -1540426309290004842, guid: 5ea8cd02dd4b173428e2eb4b98d1e361, type: 3}
---- !u!1 &32541421 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4684588254906407791, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-  m_PrefabInstance: {fileID: 7639171888274520860}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &32541423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 32541421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7652fa15ae6c797478ca7e5886cb9a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  keyCollectedPanel: {fileID: 2139921366}
-  notificationDuration: 1
 --- !u!1 &66077928
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,56 +489,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
---- !u!1 &1081461196
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1081461198}
-  - component: {fileID: 1081461197}
-  m_Layer: 0
-  m_Name: PauseManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1081461197
+--- !u!114 &1081461197 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+  m_PrefabInstance: {fileID: 7639171888274520860}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081461196}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8b4d6e7e92230ce4c89004555075589b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseManager
-  pausePanel: {fileID: 559683878}
-  pauseText: {fileID: 454118249}
-  resumeButton: {fileID: 1954730284}
-  restartButton: {fileID: 2020685488}
-  homeButton: {fileID: 1241895389}
-  homeSceneName: homePage
---- !u!4 &1081461198
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1081461196}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7639171888274520861}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1240143129
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1805,6 +1731,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: pauseText
+      value: 
+      objectReference: {fileID: 454118249}
+    - target: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: homeButton
+      value: 
+      objectReference: {fileID: 1241895389}
+    - target: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: pausePanel
+      value: 
+      objectReference: {fileID: 559683878}
+    - target: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: resumeButton
+      value: 
+      objectReference: {fileID: 1954730284}
+    - target: {fileID: 1943062679096256251, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: restartButton
+      value: 
+      objectReference: {fileID: 2020685488}
     - target: {fileID: 2157588555028530289, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: keyPromptPanel
       value: 
@@ -1814,17 +1760,9 @@ PrefabInstance:
       value: Managers
       objectReference: {fileID: 0}
     - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      propertyPath: levelToUnlock
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: doorOpenSprite
       value: 
       objectReference: {fileID: 632166846}
-    - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      propertyPath: nextLevelScene
-      value: gameplay2
-      objectReference: {fileID: 0}
     - target: {fileID: 5768792873482787346, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: doorLockedPanel
       value: 
@@ -1869,6 +1807,26 @@ PrefabInstance:
       propertyPath: keyProgressImage
       value: 
       objectReference: {fileID: 7471982}
+    - target: {fileID: 7111347820872715131, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: keyCollectedPanel
+      value: 
+      objectReference: {fileID: 2139921366}
+    - target: {fileID: 7712146161846272892, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: pauseButton
+      value: 
+      objectReference: {fileID: 1274426941}
+    - target: {fileID: 7712146161846272892, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: healthDisplay
+      value: 
+      objectReference: {fileID: 791249102}
+    - target: {fileID: 7712146161846272892, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: coinDisplayText
+      value: 
+      objectReference: {fileID: 66077930}
+    - target: {fileID: 7712146161846272892, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      propertyPath: keyCollectedPanel
+      value: 
+      objectReference: {fileID: 2139921366}
     - target: {fileID: 7769083978563586698, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 61.94609
@@ -1909,30 +1867,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8498276225892429378, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      propertyPath: keyCollectedPanel
-      value: 
-      objectReference: {fileID: 2139921366}
-    m_RemovedComponents:
-    - {fileID: 8498276225892429378, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7769083978563586698, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1081461198}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6486562847557889486, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 26480020}
-    - targetCorrespondingSourceObject: {fileID: 4684588254906407791, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 32541423}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
---- !u!4 &7639171888274520861 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7769083978563586698, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
-  m_PrefabInstance: {fileID: 7639171888274520860}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7701768500808061826
 PrefabInstance:
   m_ObjectHideFlags: 0

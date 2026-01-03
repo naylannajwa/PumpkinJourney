@@ -330,8 +330,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0.000015259, y: -91.375}
-  m_SizeDelta: {x: 807.5197, y: 175.565}
+  m_AnchoredPosition: {x: 0, y: -70}
+  m_SizeDelta: {x: 1126.3767, y: 175.565}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6577153524066233843
 CanvasRenderer:
@@ -361,7 +361,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: FeedbackFeedbackFeedbackFeedbackFeedbackFeedbackFeedback
+  m_text: Benar! Jantung memompa darah agar oksigen dan nutrisi sampai ke seluruh
+    tubuh.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -602,8 +603,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 33.969, y: -49}
-  m_SizeDelta: {x: 951.9376, y: 321.0873}
+  m_AnchoredPosition: {x: 0, y: -46}
+  m_SizeDelta: {x: 1212.2291, y: 321.0873}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &733691146122000840
 CanvasRenderer:
@@ -633,8 +634,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: apa contonya? apa contonya?apa contonya?apa contonya?apa contonya?apa contonya?apa
-    contony
+  m_text: Aku adalah menara tinggi di Italia yang terkenal karena kemiringannya,
+    meski miring aku tetap berdiri ratusan tahun, siapa aku?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -661,8 +662,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1435,7 +1436,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7529888616389635580
 RectTransform:
   m_ObjectHideFlags: 0

@@ -85,19 +85,27 @@ public class Soal : MonoBehaviour
    
     public void Opsi(string opsiHuruf)
     {
-       CheckJawaban(opsiHuruf[0]);
-        
-       if(indexSoal == maxSoal - 1)
-        {
-            isHasil = true;
-        }
-        else
-        {
-            indexSoal++;
-            ambilSoal = true;
-        }
+       char huruf = opsiHuruf[0];
+       CheckJawaban(huruf);
 
-        panel.SetActive(true);
+       if (huruf.Equals(kunciJ)) // Jika jawaban benar
+       {
+           if(indexSoal == maxSoal - 1)
+           {
+               isHasil = true;
+           }
+           else
+           {
+               indexSoal++;
+               ambilSoal = true;
+           }
+       }
+       else // Jika jawaban salah, tetap di soal yang sama
+       {
+           ambilSoal = true; // Refresh soal yang sama setelah feedback
+       }
+
+       panel.SetActive(true);
     }
 
     private float HitungNilai()

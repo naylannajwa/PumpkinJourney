@@ -245,10 +245,10 @@ public class QuizManager : MonoBehaviour
             // Animate key progress
             StartCoroutine(AnimateKeyProgress(correctAnswersCount));
 
-            // Check if we have enough correct answers to complete the quiz
-            if (correctAnswersCount >= quizData.requiredCorrectAnswers)
+            // Check if we have answered all questions correctly
+            if (currentQuestionIndex >= quizData.questions.Length - 1)
             {
-                Debug.Log("🎉 Required correct answers reached! Completing quiz...");
+                Debug.Log("🎉 All questions answered correctly! Completing quiz...");
                 StartCoroutine(CompleteQuizEarly());
             }
             else
@@ -259,15 +259,17 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            // ❌ WRONG ANSWER
+            // ❌ WRONG ANSWER - Tetap di soal yang sama
             if (feedbackText != null)
             {
                 feedbackText.text = q.wrongFeedback;
                 feedbackText.color = new Color(0.8f, 0.2f, 0.2f); // Red
             }
 
-            // Auto move to next question (no retry)
-            StartCoroutine(MoveToNextQuestionDelayed());
+            // Re-enable buttons after delay untuk mencoba lagi di soal yang sama
+            StartCoroutine(RetryAfterDelay(2.5f));
+
+            Debug.Log($"❌ Wrong answer! Staying on question {currentQuestionIndex + 1} for retry");
         }
     }
     
