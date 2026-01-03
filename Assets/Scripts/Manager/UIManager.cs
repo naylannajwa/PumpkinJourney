@@ -27,6 +27,9 @@ public class UIManager : MonoBehaviour
 
     [Tooltip("Durasi notifikasi muncul (detik)")]
     public float notificationDuration = 2f;
+
+        [Header("Coin Display")] // TAMBAH INI
+    public TextMeshProUGUI coinDisplayText; // Assign dari Inspector
     
     void Awake()
     {
@@ -58,6 +61,22 @@ public class UIManager : MonoBehaviour
         }
         
         Debug.Log("✅ UIManager Start complete!");
+
+        // TAMBAH: Initialize coin display
+        UpdateCoinDisplay(0);
+    }
+
+    public void UpdateCoinDisplay(int coinCount)
+    {
+        if (coinDisplayText != null)
+        {
+            coinDisplayText.text = $"Poin: {coinCount}";
+            Debug.Log($"🪙 Coin display updated: {coinCount}");
+        }
+        else
+        {
+            Debug.LogError("❌ Coin display text not assigned!");
+        }
     }
     
     // =============================================

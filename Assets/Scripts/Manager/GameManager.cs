@@ -114,8 +114,15 @@ public class GameManager : MonoBehaviour
     // Method untuk update UI (implementasikan jika ada UI coin)
     private void UpdateCoinUI()
     {
-        // Implementasikan sesuai dengan UI kamu
-        // Misalnya: coinText.text = coinCount.ToString();
+        // TAMBAH: Panggil UIManager untuk update coin display
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.UpdateCoinDisplay(coinCount);
+        }
+        else
+        {
+            Debug.LogWarning("⚠️ UIManager not found - coin display not updated");
+        }
     }
     
     void UpdateAllDoors()
