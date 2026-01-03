@@ -161,4 +161,20 @@ public class GameManager : MonoBehaviour
         // Restart level - scene akan dimuat ulang
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    // TAMBAH METHOD BARU: PlayerDied - dipanggil saat player health = 0
+    public void PlayerDied()
+    {
+        Debug.Log("💀 Player died - resetting level...");
+        
+        // Reset game state
+        hasKey = false;
+        coinCount = 0;
+        
+        // Reload current scene
+        string currentScene = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(currentScene);
+        
+        Debug.Log($"🔄 Level reset: {currentScene}");
+    }
 }

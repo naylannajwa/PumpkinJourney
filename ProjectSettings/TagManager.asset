@@ -81,6 +81,9 @@ TagManager:
   - name: Bg Tree
     uniqueID: 295136885
     locked: 0
+  - name: Enemy
+    uniqueID: 3860475601
+    locked: 0
   - name: Deadzone
     uniqueID: 4095280027
     locked: 0

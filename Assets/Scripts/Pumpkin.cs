@@ -18,12 +18,16 @@ public class PumpkinMovement : MonoBehaviour
     public float airControl = 0.7f;
 
     [Header("Spawn Settings")]
-    public Vector3 spawnPosition = new Vector3(0, 2, 0);
+    public Vector3 spawnPosition = new Vector3(-8, 2, 0); // MULAI DARI KIRI
+
+    [Header("Visual Effects")] // TAMBAH EFEK VISUAL
+    public Color hurtColor = Color.red;
+    public float hurtFlashDuration = 0.3f;
 
     // Private variables
     private Rigidbody2D rb;
     private Animator anim;
-    private int healthPoints = 3;
+    private int healthPoints = 3; // 3 NYAWA
     private bool isDead;
     private bool facingRight = true;
     private Vector3 localScale;
@@ -32,12 +36,21 @@ public class PumpkinMovement : MonoBehaviour
     private float moveInput;
     private float currentSpeed;
     private float targetSpeed;
+    private SpriteRenderer spriteRenderer; // TAMBAH
+    private Color originalColor; // TAMBAH
 
     void Start() 
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         localScale = transform.localScale;
+
+        // TAMBAH: Get SpriteRenderer untuk visual effects
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            originalColor = spriteRenderer.color;
+        }
 
         // === RESET ALL STATE FOR LEVEL START/RESTART ===
         ResetPlayerState();
@@ -70,7 +83,7 @@ public class PumpkinMovement : MonoBehaviour
         transform.localScale = localScale;
         
         // Reset health dan state
-        healthPoints = 3;
+        healthPoints = 3; // RESET KE 3 NYAWA
         isDead = false;
         
         // Reset movement state
@@ -78,6 +91,13 @@ public class PumpkinMovement : MonoBehaviour
         targetSpeed = 0;
         moveInput = 0;
         isSliding = false;
+        
+        // Reset visual effects
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+        transform.localScale = localScale;
         
         // Reset velocity
         if (rb != null)
@@ -104,7 +124,7 @@ public class PumpkinMovement : MonoBehaviour
             TryPlayAnimation("Idle");
         }
         
-        Debug.Log("🔄 Player state reset!");
+        Debug.Log("🔄 Player state reset! Health: 3/3");
     }
     
     void TryPlayAnimation(string stateName)
@@ -311,12 +331,15 @@ public class PumpkinMovement : MonoBehaviour
         }
     }
 
-    void TakeDamage()
+    // UPDATED: TakeDamage dengan health system 3 nyawa
+    public void TakeDamage()
     {
         if (isDead) return;
 
-        healthPoints--;
+        healthPoints--; // Kurangi 1 nyawa
         
+        Debug.Log($"🎃 Player took damage! Health: {healthPoints}/3");
+
         if (healthPoints > 0) 
         {
             StartCoroutine(Hurt()); 
@@ -327,15 +350,37 @@ public class PumpkinMovement : MonoBehaviour
         }
     }
 
+    // UPDATED: Hurt dengan visual effects
     IEnumerator Hurt()
     {
+        Debug.Log("💥 Player hurt! Showing visual effects...");
+        
+        // Visual feedback - color flash
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = hurtColor;
+        }
+        
+        // Squash effect saat hurt
+        Vector3 originalScale = transform.localScale;
+        transform.localScale = new Vector3(originalScale.x * 0.8f, originalScale.y * 1.2f, originalScale.z);
+        
         // Knockback
         rb.linearVelocity = Vector2.zero;
         
         Vector2 knockbackDir = facingRight ? new Vector2(-5f, 8f) : new Vector2(5f, 8f);
         rb.AddForce(knockbackDir, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f); // Lebih cepat untuk hurt effect
+        
+        // Reset visual effects
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = originalColor;
+        }
+        transform.localScale = originalScale;
+        
+        yield return new WaitForSeconds(0.3f); // Sisa waktu untuk cooldown
     }
 
     void Die()
@@ -348,19 +393,19 @@ public class PumpkinMovement : MonoBehaviour
         if (HasParameter("isDead"))
             anim.SetBool("isDead", true);
         
-        Debug.Log("Pumpkin telah gugur!");
+        Debug.Log("💀 Pumpkin died! Health reached 0 - Resetting level...");
         
-        StartCoroutine(RespawnRoutine());
-    }
-
-    IEnumerator RespawnRoutine()
-    {
-        yield return new WaitForSeconds(2f);
-        
-        // Reset semua state saat respawn
-        ResetPlayerState();
-        
-        Debug.Log("🔄 Player respawned!");
+        // Panggil GameManager untuk reset level
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.PlayerDied();
+        }
+        else
+        {
+            // Fallback: reload scene langsung
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
     }
 
     // ===================================================================================
