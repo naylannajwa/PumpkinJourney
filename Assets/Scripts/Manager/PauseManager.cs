@@ -13,10 +13,23 @@ public class PauseManager : MonoBehaviour
     public Button resumeButton;
     public Button restartButton;
     public Button homeButton;
-    
+
+    [Header("Countdown UI")]
+    [Tooltip("Text untuk menampilkan countdown 3, 2, 1")]
+    public TextMeshProUGUI countdownText;
+    [Tooltip("Panel untuk countdown background")]
+    public GameObject countdownPanel;
+
+    [Header("Countdown Settings")]
+    [Tooltip("Ukuran maksimal animasi countdown (1 = normal size)")]
+    public float countdownMaxScale = 2.0f;
+    [Tooltip("Durasi animasi countdown dalam detik")]
+    public float countdownAnimationDuration = 0.8f;
+
     [Header("Settings")]
     public string homeSceneName = "homePage";
     private bool isPaused = false;
+    private bool isCountingDown = false;
     
     void Awake()
     {
@@ -67,7 +80,18 @@ public class PauseManager : MonoBehaviour
         {
             pauseText.text = "GAME PAUSED";
         }
-        
+
+        // Initialize countdown UI
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+
+        if (countdownPanel != null)
+        {
+            countdownPanel.SetActive(false);
+        }
+
         Debug.Log("🎮 PauseManager ready!");
     }
     
@@ -76,11 +100,11 @@ public class PauseManager : MonoBehaviour
         // Pause dengan ESC atau P
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
         {
-            if (isPaused)
+            if (isPaused && !isCountingDown) // Don't allow resume if counting down
             {
                 ResumeGame();
             }
-            else
+            else if (!isPaused)
             {
                 PauseGame();
             }
@@ -129,7 +153,7 @@ public class PauseManager : MonoBehaviour
     public void OnResumeButtonClicked()
     {
         Debug.Log("▶️ Resume button clicked!");
-        ResumeGame();
+        StartCoroutine(ResumeWithCountdown());
     }
     
     public void OnRestartButtonClicked()
@@ -154,10 +178,115 @@ public class PauseManager : MonoBehaviour
     {
         Debug.Log("🏠 Home button clicked!");
         ResumeGame(); // Resume dulu sebelum pindah scene
-        
+
         SceneManager.LoadScene(homeSceneName);
     }
-    
+
+    /// <summary>
+    /// Coroutine untuk resume game dengan countdown 3, 2, 1
+    /// </summary>
+    private System.Collections.IEnumerator ResumeWithCountdown()
+    {
+        if (isCountingDown) yield break; // Prevent multiple countdowns
+
+        isCountingDown = true;
+
+        // Hide pause panel
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+
+        // Show countdown panel
+        if (countdownPanel != null)
+        {
+            countdownPanel.SetActive(true);
+        }
+
+        // Countdown dari 3 ke 1
+        for (int i = 3; i > 0; i--)
+        {
+            // Check if user pressed ESC/P to skip countdown
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+            {
+                Debug.Log("⏭️ Countdown skipped by user input!");
+                break;
+            }
+
+            if (countdownText != null)
+            {
+                countdownText.text = i.ToString();
+                countdownText.gameObject.SetActive(true);
+
+                // Animate scale effect
+                StartCoroutine(AnimateCountdownNumber(countdownText.transform));
+            }
+
+            // Play countdown sound
+            if (AudioManager.Instance != null)
+            {
+                // You can add a specific countdown sound here
+                AudioManager.Instance.PlayButtonClickSound();
+            }
+
+            Debug.Log($"⏱️ Countdown: {i}");
+
+            yield return new WaitForSecondsRealtime(1f); // Wait 1 second (unscaled time)
+        }
+
+        // Hide countdown
+        if (countdownText != null)
+        {
+            countdownText.gameObject.SetActive(false);
+        }
+
+        if (countdownPanel != null)
+        {
+            countdownPanel.SetActive(false);
+        }
+
+        // Resume game
+        ResumeGame();
+        isCountingDown = false;
+
+        Debug.Log("✅ Countdown complete, game resumed!");
+    }
+
+    /// <summary>
+    /// Coroutine untuk animasi countdown number
+    /// </summary>
+    private System.Collections.IEnumerator AnimateCountdownNumber(Transform numberTransform)
+    {
+        if (numberTransform == null) yield break;
+
+        float duration = countdownAnimationDuration;
+        float elapsed = 0f;
+        Vector3 startScale = Vector3.zero;
+        Vector3 endScale = Vector3.one * countdownMaxScale;
+
+        numberTransform.localScale = startScale;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+
+            // Scale up then down
+            if (t < 0.5f)
+            {
+                numberTransform.localScale = Vector3.Lerp(startScale, endScale, t * 2);
+            }
+            else
+            {
+                numberTransform.localScale = Vector3.Lerp(endScale, Vector3.one, (t - 0.5f) * 2);
+            }
+
+            yield return null;
+        }
+
+        numberTransform.localScale = Vector3.one;
+    }
+
     public bool IsPaused()
     {
         return isPaused;

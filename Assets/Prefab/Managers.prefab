@@ -49,6 +49,10 @@ MonoBehaviour:
   resumeButton: {fileID: 0}
   restartButton: {fileID: 0}
   homeButton: {fileID: 0}
+  countdownText: {fileID: 0}
+  countdownPanel: {fileID: 0}
+  countdownMaxScale: 3
+  countdownAnimationDuration: 0.5
   homeSceneName: homePage
 --- !u!1 &3807117923411473522
 GameObject:
