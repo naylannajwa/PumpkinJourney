@@ -171,6 +171,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   keyCollectedPanel: {fileID: 2139921366}
   notificationDuration: 1
+--- !u!1 &39746955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7934933431757391668, guid: 93e480abd598753489cd48ef94b86882, type: 3}
+  m_PrefabInstance: {fileID: 5717537281721810859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!111 &39746959
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39746955}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 7400000, guid: 201748773d00ad947acacdcb274fd49c, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1 &68314106
 GameObject:
   m_ObjectHideFlags: 0
@@ -397,6 +419,7 @@ GameObject:
   - component: {fileID: 559683879}
   - component: {fileID: 559683881}
   - component: {fileID: 559683880}
+  - component: {fileID: 559683882}
   m_Layer: 5
   m_Name: PausePanel
   m_TagString: Untagged
@@ -465,6 +488,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559683878}
   m_CullTransparentMesh: 1
+--- !u!95 &559683882
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 559683878}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a620650a5f239df40872c3e3a38c1403, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &592308778 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6311326878403122081, guid: 6b95a395b375a8842ad780df19ffbfe9, type: 3}
@@ -481,6 +526,33 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1733559209502164383, guid: 227dea394d078fb4994a415da2904c1e, type: 3}
   m_PrefabInstance: {fileID: 3012950703458345623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &767721603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8693637885494642603, guid: 93e480abd598753489cd48ef94b86882, type: 3}
+  m_PrefabInstance: {fileID: 5717537281721810859}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &767721609
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767721603}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8b6a9b98800622944ba034e86eb693c9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &773348700
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2354,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1306766714}
+    - target: {fileID: 8373688243204188711, guid: 93e480abd598753489cd48ef94b86882, type: 3}
+      propertyPath: m_text
+      value: 85
+      objectReference: {fileID: 0}
     - target: {fileID: 8693637885494642603, guid: 93e480abd598753489cd48ef94b86882, type: 3}
       propertyPath: m_Name
       value: LevelCompleteCanvas
@@ -2293,7 +2369,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8693637885494642603, guid: 93e480abd598753489cd48ef94b86882, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 767721609}
+    - targetCorrespondingSourceObject: {fileID: 7934933431757391668, guid: 93e480abd598753489cd48ef94b86882, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 39746959}
   m_SourcePrefab: {fileID: 100100000, guid: 93e480abd598753489cd48ef94b86882, type: 3}
 --- !u!4 &6936241748969314554 stripped
 Transform:
