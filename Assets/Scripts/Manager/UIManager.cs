@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep across scenes
             Debug.Log("✅ UIManager initialized!");
         }
         else

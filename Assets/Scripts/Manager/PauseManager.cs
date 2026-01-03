@@ -23,6 +23,7 @@ public class PauseManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject); // Keep across scenes
             Debug.Log("✅ PauseManager initialized!");
         }
         else
@@ -52,8 +53,16 @@ public class PauseManager : MonoBehaviour
         if (pausePanel != null)
         {
             pausePanel.SetActive(false);
+
+            // Ensure canvas is hidden at start
+            Canvas canvas = pausePanel.GetComponentInParent<Canvas>();
+            if (canvas != null)
+            {
+                canvas.transform.localScale = Vector3.zero;
+                Debug.Log("📺 Canvas hidden at start!");
+            }
         }
-        
+
         if (pauseText != null)
         {
             pauseText.text = "GAME PAUSED";
@@ -81,28 +90,39 @@ public class PauseManager : MonoBehaviour
     public void PauseGame()
     {
         if (isPaused) return;
-        
+
         isPaused = true;
         Time.timeScale = 0f; // Pause game
-        
+
         if (pausePanel != null)
         {
             pausePanel.SetActive(true);
             Debug.Log("⏸️ Game Paused!");
+            
+            // Animasi akan otomatis berjalan karena Animator component
+            // JANGAN set canvas scale manual agar animasi terlihat
         }
     }
-    
+        
     public void ResumeGame()
     {
         if (!isPaused) return;
-        
+
         isPaused = false;
         Time.timeScale = 1f; // Resume game
-        
+
         if (pausePanel != null)
         {
             pausePanel.SetActive(false);
             Debug.Log("▶️ Game Resumed!");
+
+            // Hide canvas
+            Canvas canvas = pausePanel.GetComponentInParent<Canvas>();
+            if (canvas != null)
+            {
+                canvas.transform.localScale = Vector3.zero;
+                Debug.Log("📺 Canvas scale set to hidden!");
+            }
         }
     }
     
