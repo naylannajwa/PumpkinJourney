@@ -207,6 +207,7 @@ public class SlimeEnemy : MonoBehaviour
         Debug.Log("🐸 SIDE ATTACK - Slime attacking player! Calling TakeDamage()");
 
         // Deal damage to player - PLAYER KEHILANGAN NYAWA
+        // Note: PlayerHurt sound is now played in TakeDamage() method
         PumpkinMovement playerScript = player.GetComponent<PumpkinMovement>();
         if (playerScript != null)
         {

@@ -434,6 +434,12 @@ public class PumpkinMovement : MonoBehaviour
     {
         Debug.Log("⚡ Starting damage flash effect (pumpkin jadi merah)");
 
+        // Play player hurt sound when damage flash starts
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerHurtSound();
+        }
+
         // Flash merah pada sprite renderer
         if (spriteRenderer != null)
         {
