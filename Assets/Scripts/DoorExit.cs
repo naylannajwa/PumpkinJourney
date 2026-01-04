@@ -59,9 +59,15 @@ public class DoorExit : MonoBehaviour
 
             // Cek apakah punya kunci
             bool hasKey = GameManager.Instance != null && GameManager.Instance.HasKey();
-            
+
             if (hasKey)
             {
+                // Play door open sound when approaching door with key
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayDoorOpenSound();
+                }
+
                 // SUDAH punya kunci - LANGSUNG SHOW LEVEL COMPLETE!
                 Debug.Log("[DoorExit] 🎉 Player has key! Showing level complete screen...");
 
@@ -122,6 +128,12 @@ public class DoorExit : MonoBehaviour
             }
             else
             {
+                // Play door locked sound when approaching locked door
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayDoorLockedSound();
+                }
+
                 // Belum punya kunci - show "Cari kunci dulu"
                 if (doorLockedPanel != null)
                 {
@@ -203,12 +215,6 @@ public class DoorExit : MonoBehaviour
 
         if (GameManager.Instance.HasKey())
         {
-            // Play door open sound
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.PlayDoorOpenSound();
-            }
-
             // Unlock next level
             UnlockNextLevel();
 
@@ -217,12 +223,6 @@ public class DoorExit : MonoBehaviour
         }
         else
         {
-            // Play door locked sound
-            if (AudioManager.Instance != null)
-            {
-                AudioManager.Instance.PlayDoorLockedSound();
-            }
-
             Debug.Log("[DoorExit] Player doesn't have key!");
         }
     }

@@ -198,6 +198,12 @@ public class SlimeEnemy : MonoBehaviour
     {
         canAttack = false;
 
+        // Play player hurt sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayPlayerHurtSound();
+        }
+
         Debug.Log("🐸 SIDE ATTACK - Slime attacking player! Calling TakeDamage()");
 
         // Deal damage to player - PLAYER KEHILANGAN NYAWA
@@ -248,15 +254,27 @@ public class SlimeEnemy : MonoBehaviour
                 {
                     // JUMP ATTACK: Player injak dari atas = SLIME MATI LANGSUNG
                     Debug.Log("🦘 JUMP ATTACK SUCCESS! Slime dies instantly!");
-                    
+
+                    // Play enemy death sound
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayEnemyDeathSound();
+                    }
+
                     // TAMBAH: Visual effects sebelum mati
                     StartCoroutine(JumpAttackEffects());
-                    
+
                     // HAPUS: Bounce player - langsung mati tanpa bounce
                     // playerRb.AddForce(Vector2.up * 8f, ForceMode2D.Impulse);
                 }
                 else
                 {
+                    // Play enemy hit sound
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayEnemyHitSound();
+                    }
+
                     // NORMAL COLLISION: Saling terpental (bounce effect)
                     Debug.Log("💥 NORMAL COLLISION! Bounce effect!");
                     BounceOffPlayer(collision);
@@ -270,6 +288,12 @@ public class SlimeEnemy : MonoBehaviour
     {
         if (col.CompareTag("DeadZone") || col.gameObject.name.Contains("DeadZone"))
         {
+            // Play enemy death sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayEnemyDeathSound();
+            }
+
             Debug.Log("💀 Slime fell into deadzone - dying!");
             Die();
         }

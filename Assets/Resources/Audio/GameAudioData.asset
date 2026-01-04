@@ -37,6 +37,9 @@ MonoBehaviour:
   timeWarningSound: {fileID: 0}
   windAmbientSound: {fileID: 0}
   gameOverSound: {fileID: 0}
+  enemyHitSound: {fileID: 8300000, guid: aba09dbe67867ec41a3e8a546ad2dfea, type: 3}
+  enemyDeathSound: {fileID: 8300000, guid: c622838a5b3beb247a0027d6b3b4de99, type: 3}
+  playerHurtSound: {fileID: 0}
   footstepSound: {fileID: 8300000, guid: 0eb25a79c7c57754d96fe2c16cb6ac03, type: 3}
   candyCollectSound: {fileID: 0}
   powerUpSound: {fileID: 0}

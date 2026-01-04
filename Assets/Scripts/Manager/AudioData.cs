@@ -72,6 +72,16 @@ public class AudioData : ScriptableObject
     [Header("Game Over Sounds")]
     [Tooltip("Suara saat game over")]
     public AudioClip gameOverSound;
+
+    [Header("Enemy Sounds")]
+    [Tooltip("Suara saat enemy terkena damage")]
+    public AudioClip enemyHitSound;
+    [Tooltip("Suara saat enemy mati")]
+    public AudioClip enemyDeathSound;
+
+    [Header("Player Hurt Sounds")]
+    [Tooltip("Suara saat player terkena damage")]
+    public AudioClip playerHurtSound;
     [Tooltip("Suara langkah kaki")]
     public AudioClip footstepSound;
     [Tooltip("Suara collect candy")]

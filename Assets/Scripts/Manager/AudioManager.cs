@@ -249,6 +249,15 @@ public class AudioManager : MonoBehaviour
             case AudioType.GameOverSound:
                 clip = audioData.gameOverSound;
                 break;
+            case AudioType.EnemyHit:
+                clip = audioData.enemyHitSound;
+                break;
+            case AudioType.EnemyDeath:
+                clip = audioData.enemyDeathSound;
+                break;
+            case AudioType.PlayerHurt:
+                clip = audioData.playerHurtSound;
+                break;
             default:
                 Debug.LogWarning($"⚠️ AudioType {audioType} tidak dikenali");
                 break;
@@ -600,6 +609,34 @@ public class AudioManager : MonoBehaviour
     public void PlayGameOverSound()
     {
         PlaySound(AudioType.GameOverSound);
+    }
+
+    // =============================================
+    // ENEMY SOUNDS
+    // =============================================
+
+    /// <summary>
+    /// Mainkan suara enemy terkena damage
+    /// </summary>
+    public void PlayEnemyHitSound()
+    {
+        PlaySound(AudioType.EnemyHit);
+    }
+
+    /// <summary>
+    /// Mainkan suara enemy mati
+    /// </summary>
+    public void PlayEnemyDeathSound()
+    {
+        PlaySound(AudioType.EnemyDeath);
+    }
+
+    /// <summary>
+    /// Mainkan suara player terkena damage
+    /// </summary>
+    public void PlayPlayerHurtSound()
+    {
+        PlaySound(AudioType.PlayerHurt);
     }
 
     /// <summary>

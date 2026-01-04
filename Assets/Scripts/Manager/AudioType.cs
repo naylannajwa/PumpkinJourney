@@ -46,5 +46,12 @@ public enum AudioType
     WindAmbient,
 
     // Game Over Sounds
-    GameOverSound
+    GameOverSound,
+
+    // Enemy Sounds
+    EnemyHit,
+    EnemyDeath,
+
+    // Player Hurt Sounds
+    PlayerHurt
 }
