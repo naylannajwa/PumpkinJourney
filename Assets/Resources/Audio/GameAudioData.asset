@@ -14,22 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AudioData
   mainBGM: {fileID: 8300000, guid: ea14efc56daa1b642ba2617cb606229c, type: 3}
   homePageBGM: {fileID: 8300000, guid: d8dfed836ae23254fab949cee7ff9040, type: 3}
-  quizBGM: {fileID: 8300000, guid: 99babbda5b8081249898aec311360b7f, type: 3}
+  quizBGM: {fileID: 8300000, guid: d894811351a8a4c469391e875431d030, type: 3}
   jumpSound: {fileID: 8300000, guid: 2d1320a4e4bda3f4fa91de03c38b74f4, type: 3}
   deathSound: {fileID: 8300000, guid: 479348c1963c8ff44b4e66285ed358c1, type: 3}
   slideSound: {fileID: 8300000, guid: 63e9603c660cd1f49a244ec1f9accf55, type: 3}
   landSound: {fileID: 8300000, guid: 73e6ea5d6200cf845bdd0ae4c009d3fd, type: 3}
-  buttonClickSound: {fileID: 0}
-  buttonHoverSound: {fileID: 0}
-  uiPopupSound: {fileID: 0}
-  uiCloseSound: {fileID: 0}
+  buttonClickSound: {fileID: 8300000, guid: 74ba7050f805ad44897f656374485401, type: 3}
+  buttonHoverSound: {fileID: 8300000, guid: 4c5fe47b55770a641a9af7f571f1b3f3, type: 3}
+  uiPopupSound: {fileID: 8300000, guid: 6875466e92a4d624689513530467b42e, type: 3}
+  uiCloseSound: {fileID: 8300000, guid: ac7b986c2d0ee714ca83527b941e67e2, type: 3}
   pauseSound: {fileID: 8300000, guid: 9ffa482a70f0faf408812f035d319777, type: 3}
   playSound: {fileID: 0}
-  keyCollectSound: {fileID: 0}
-  doorLockedSound: {fileID: 0}
-  doorOpenSound: {fileID: 0}
-  levelCompleteSound: {fileID: 0}
-  scoreSound: {fileID: 0}
+  keyCollectSound: {fileID: 8300000, guid: 4859d1db11dcf3c4b8802e0acabbf48e, type: 3}
+  doorLockedSound: {fileID: 8300000, guid: 4d0e296e546ef704d90461a79faaf5c6, type: 3}
+  doorOpenSound: {fileID: 8300000, guid: bd981eb8aa3227240ba871859085b785, type: 3}
+  levelCompleteSound: {fileID: 8300000, guid: f893a1257682e6e4fb6dc97219cfef98, type: 3}
+  scoreSound: {fileID: 8300000, guid: 9e2fbad00985c504790d9bb952b2425f, type: 3}
   correctAnswerSound: {fileID: 0}
   wrongAnswerSound: {fileID: 0}
   quizCompleteSound: {fileID: 0}

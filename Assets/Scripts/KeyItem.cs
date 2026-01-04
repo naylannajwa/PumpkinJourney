@@ -85,10 +85,16 @@ public class KeyItem : MonoBehaviour
             {
                 GameManager.Instance.CollectKey();
             }
-            
+
+            // Play key collect sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayKeyCollectSound();
+            }
+
             // Destroy key object
             Destroy(gameObject);
-            
+
             Debug.Log("[KeyItem] ✅ Key collected!");
         }
         else

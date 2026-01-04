@@ -93,6 +93,11 @@ public class LevelSelectManager : MonoBehaviour
                 string sceneName = level.sceneName;
                 level.button.onClick.AddListener(() => LoadLevel(sceneName));
             }
+            else
+            {
+                // Add listener for locked button to play locked sound
+                level.button.onClick.AddListener(() => PlayLockedSound());
+            }
         }
 
         Debug.Log("[LevelSelectManager] ✅ Level buttons initialized!");
@@ -107,6 +112,17 @@ public class LevelSelectManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    void PlayLockedSound()
+    {
+        // Play door locked sound for locked levels
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayDoorLockedSound();
+        }
+
+        Debug.Log("[LevelSelectManager] 🔒 Locked level clicked - played locked sound");
     }
 
     // TAMBAH: Method untuk force reset game (untuk testing/debugging)

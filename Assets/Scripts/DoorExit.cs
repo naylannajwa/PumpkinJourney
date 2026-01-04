@@ -86,6 +86,12 @@ public class DoorExit : MonoBehaviour
                     }
                 }
                 
+                // Play level complete sound
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlayLevelCompleteSound();
+                }
+
                 // Show level complete screen
                 LevelCompleteManager.EnsureInstance(); // Pastikan instance ada
 
@@ -197,6 +203,12 @@ public class DoorExit : MonoBehaviour
 
         if (GameManager.Instance.HasKey())
         {
+            // Play door open sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayDoorOpenSound();
+            }
+
             // Unlock next level
             UnlockNextLevel();
 
@@ -205,6 +217,12 @@ public class DoorExit : MonoBehaviour
         }
         else
         {
+            // Play door locked sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayDoorLockedSound();
+            }
+
             Debug.Log("[DoorExit] Player doesn't have key!");
         }
     }

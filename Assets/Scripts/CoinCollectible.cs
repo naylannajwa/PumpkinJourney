@@ -33,16 +33,22 @@ public class CoinCollectible : MonoBehaviour
     void CollectCoin()
     {
         isCollected = true;
-        
+
+        // Play score sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayScoreSound();
+        }
+
         // Tambahkan koin ke GameManager (kita akan tambahkan method ini)
         if (GameManager.Instance != null)
         {
             GameManager.Instance.AddCoins(coinValue);
         }
-        
+
         // Mulai efek fade dan naik ke atas
         StartCoroutine(FadeAndMoveUp());
-        
+
         // Disable collider agar tidak bisa dikumpul lagi
         GetComponent<Collider2D>().enabled = false;
     }
