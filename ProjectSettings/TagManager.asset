@@ -117,5 +117,8 @@ TagManager:
   - name: Key
     uniqueID: 2947799067
     locked: 0
+  - name: Contoh
+    uniqueID: 1779298693
+    locked: 0
   m_RenderingLayers:
   - Default
