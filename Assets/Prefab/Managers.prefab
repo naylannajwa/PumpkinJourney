@@ -110,7 +110,7 @@ MonoBehaviour:
   keySprite50: {fileID: -1045133410153605164, guid: 2fde53bc72f1fd24f9b6c8db7a971de7, type: 3}
   keySprite75: {fileID: -5622901713081898559, guid: f565144bea0291046a8402a3c251ef0e, type: 3}
   keySprite100: {fileID: -796155573255488767, guid: 22ff492dc5813b447a3105dfa76e9723, type: 3}
-  quizData: {fileID: 11400000, guid: 5364371017d6f2f47a2680132f29768a, type: 2}
+  quizData: {fileID: 11400000, guid: 9763e48f03d7696479507215f8489480, type: 2}
   keyAnimDuration: 0.8
   delayBeforeNextQuestion: 1.5
   scaleCurve:

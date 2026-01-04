@@ -681,6 +681,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+--- !u!4 &508112219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7769083978563586698, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+  m_PrefabInstance: {fileID: 7639171888274520860}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &559683878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5908691779554916656, guid: bdf7356a557dace49aff3ea2a604e758, type: 3}
@@ -1116,6 +1121,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b95a395b375a8842ad780df19ffbfe9, type: 3}
+--- !u!1 &1620738641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1620738642}
+  - component: {fileID: 1620738643}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1620738642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620738641}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 508112219}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1620738643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1620738641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d0fa1dfb4fb574380fd8933fec9391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  audioMixer: {fileID: 0}
+  audioData: {fileID: 11400000, guid: 2e17f969827fd8342ac4f75c5a949429, type: 2}
+  masterVolume: 1
+  sfxVolume: 1
+  bgmVolume: 0.5
 --- !u!1 &1687025559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2297,7 +2351,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7769083978563586698, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1620738642}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 74921d9eefaf9f9488b8f83e72bece18, type: 3}
 --- !u!1001 &7701768500808061826

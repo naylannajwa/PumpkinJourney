@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5461b15debbadda4d9e472664889b932, type: 3}
+  m_Name: GameAudioData
+  m_EditorClassIdentifier: Assembly-CSharp::AudioData
+  mainBGM: {fileID: 8300000, guid: ea14efc56daa1b642ba2617cb606229c, type: 3}
+  homePageBGM: {fileID: 8300000, guid: d8dfed836ae23254fab949cee7ff9040, type: 3}
+  quizBGM: {fileID: 8300000, guid: 99babbda5b8081249898aec311360b7f, type: 3}
+  jumpSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  slideSound: {fileID: 0}
+  landSound: {fileID: 0}
+  buttonClickSound: {fileID: 0}
+  buttonHoverSound: {fileID: 0}
+  uiPopupSound: {fileID: 0}
+  uiCloseSound: {fileID: 0}
+  pauseSound: {fileID: 8300000, guid: 9ffa482a70f0faf408812f035d319777, type: 3}
+  playSound: {fileID: 0}
+  keyCollectSound: {fileID: 0}
+  doorLockedSound: {fileID: 0}
+  doorOpenSound: {fileID: 0}
+  levelCompleteSound: {fileID: 0}
+  scoreSound: {fileID: 0}
+  correctAnswerSound: {fileID: 0}
+  wrongAnswerSound: {fileID: 0}
+  quizCompleteSound: {fileID: 0}
+  quizStartSound: {fileID: 0}
+  timeWarningSound: {fileID: 0}
+  windAmbientSound: {fileID: 0}
+  footstepSound: {fileID: 0}
+  candyCollectSound: {fileID: 0}
+  powerUpSound: {fileID: 0}

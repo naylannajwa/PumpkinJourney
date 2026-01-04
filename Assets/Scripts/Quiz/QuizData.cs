@@ -29,6 +29,9 @@ public class QuizData : ScriptableObject
     {
         currentLevel = Mathf.Clamp(level, 1, 4); // Ensure level is between 1-4
         Debug.Log($"🎯 QuizData level set to {currentLevel}");
+
+        // Auto-reload questions when level changes
+        LoadFromTextFile();
     }
 
     /// <summary>
@@ -155,16 +158,26 @@ public class QuizData : ScriptableObject
         int startIndex = (currentLevel - 1) * questionsPerLevel;
         int endIndex = Mathf.Min(startIndex + questionsPerLevel, loadedQuestions.Count);
 
+        Debug.Log($"🎯 Filtering for Level {currentLevel}: startIndex={startIndex}, questionsPerLevel={questionsPerLevel}, loadedQuestions.Count={loadedQuestions.Count}");
+
         if (startIndex >= loadedQuestions.Count)
         {
-            Debug.LogWarning($"⚠️ No questions available for level {currentLevel}. Total questions: {loadedQuestions.Count}");
+            Debug.LogWarning($"⚠️ No questions available for level {currentLevel}. Start index {startIndex} >= total questions {loadedQuestions.Count}");
             questions = new QuizQuestion[0];
         }
         else
         {
-            List<QuizQuestion> levelQuestions = loadedQuestions.GetRange(startIndex, endIndex - startIndex);
+            int questionCount = endIndex - startIndex;
+            List<QuizQuestion> levelQuestions = loadedQuestions.GetRange(startIndex, questionCount);
             questions = levelQuestions.ToArray();
-            Debug.Log($"✅ Loaded {questions.Length} questions for level {currentLevel} from {textFilePath} (showing {startIndex}-{endIndex-1} of {loadedQuestions.Count} total)");
+
+            Debug.Log($"✅ Loaded {questions.Length} questions for level {currentLevel} (indices {startIndex}-{endIndex-1})");
+
+            // Debug: Show first question of this level
+            if (questions.Length > 0)
+            {
+                Debug.Log($"📝 Level {currentLevel} first question: {questions[0].question}");
+            }
         }
     }
 }

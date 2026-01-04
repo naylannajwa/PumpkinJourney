@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // Hapus DontDestroyOnLoad agar GameManager reset per scene
+            DontDestroyOnLoad(gameObject); // PENTING: Agar level persistent across scenes
+            Debug.Log("🎯 GameManager created and set to DontDestroyOnLoad");
         }
         else
         {
@@ -39,6 +40,15 @@ public class GameManager : MonoBehaviour
     
     void Start()
     {
+        // Auto-detect level from scene name jika belum di-set
+        string currentSceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        if (currentLevel == 1 && currentSceneName != "homePage") // Jika masih default level 1
+        {
+            DetectLevelFromScene(currentSceneName);
+        }
+
+        Debug.Log($"🎯 GameManager Start - Current level: {currentLevel}, Scene: {currentSceneName}");
+
         // Reset key for new level (kunci per level, bukan persistent)
         hasKey = false;
         Debug.Log($"🔑 GameManager Start - Key reset for new level");
@@ -74,6 +84,30 @@ public class GameManager : MonoBehaviour
     public int GetCurrentLevel()
     {
         return currentLevel;
+    }
+
+    /// <summary>
+    /// Auto-detect level dari nama scene
+    /// </summary>
+    private void DetectLevelFromScene(string sceneName)
+    {
+        if (sceneName.StartsWith("gameplay"))
+        {
+            if (sceneName == "gameplay")
+            {
+                currentLevel = 1;
+            }
+            else
+            {
+                // Extract number from "gameplay2" -> 2, "gameplay3" -> 3, etc.
+                string numberStr = sceneName.Substring(8); // Remove "gameplay" prefix
+                if (int.TryParse(numberStr, out int levelNum))
+                {
+                    currentLevel = Mathf.Clamp(levelNum, 1, 4);
+                }
+            }
+            Debug.Log($"🎯 Auto-detected level {currentLevel} from scene '{sceneName}'");
+        }
     }
     
     void ShowKeyCollectedNotification()
@@ -160,17 +194,42 @@ public class GameManager : MonoBehaviour
     
     public void LoadLevel(string levelName)
     {
-        // Extract level number from scene name (e.g., "Level1" -> 1)
+        // Extract level number from scene name
+        int levelNum = 1; // Default level 1
+
         if (levelName.StartsWith("Level"))
         {
+            // Handle "Level1", "Level2", etc.
             string levelStr = levelName.Substring(5); // Remove "Level" prefix
-            if (int.TryParse(levelStr, out int levelNum))
+            if (int.TryParse(levelStr, out levelNum))
             {
                 currentLevel = Mathf.Clamp(levelNum, 1, 4);
-                Debug.Log($"🎯 GameManager level set to {currentLevel}");
             }
         }
+        else if (levelName.StartsWith("gameplay"))
+        {
+            // Handle "gameplay", "gameplay2", "gameplay3", "gameplay4"
+            if (levelName == "gameplay")
+            {
+                levelNum = 1;
+            }
+            else
+            {
+                // Extract number from "gameplay2" -> 2, "gameplay3" -> 3, etc.
+                string numberStr = levelName.Substring(8); // Remove "gameplay" prefix
+                if (int.TryParse(numberStr, out levelNum))
+                {
+                    // levelNum sudah berisi angka yang benar
+                }
+                else
+                {
+                    levelNum = 1; // fallback
+                }
+            }
+            currentLevel = Mathf.Clamp(levelNum, 1, 4);
+        }
 
+        Debug.Log($"🎯 GameManager level set to {currentLevel} from scene '{levelName}'");
         SceneManager.LoadScene(levelName);
     }
     

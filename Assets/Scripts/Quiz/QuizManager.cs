@@ -60,6 +60,20 @@ public class QuizManager : MonoBehaviour
             return;
         }
 
+        // Auto-load QuizData dari Resources jika belum di-assign
+        if (quizData == null)
+        {
+            quizData = Resources.Load<QuizData>("QuizData");
+            if (quizData != null)
+            {
+                Debug.Log("✅ QuizData auto-loaded from Resources!");
+            }
+            else
+            {
+                Debug.LogError("❌ QuizData tidak ditemukan di Resources! Buat asset QuizData di Assets/Resources/QuizData.asset");
+            }
+        }
+
         // Load questions from text file if quizData is assigned
         if (quizData != null)
         {
@@ -122,11 +136,30 @@ public class QuizManager : MonoBehaviour
         if (GameManager.Instance != null)
         {
             int level = GameManager.Instance.GetCurrentLevel();
+            Debug.Log($"🎯 QuizManager: GameManager level is {level}");
+
             if (quizData != null)
             {
-                quizData.SetLevel(level);
-                quizData.LoadFromTextFile(); // Reload questions for the new level
+                Debug.Log($"📊 Before SetLevel: quizData.currentLevel = {quizData.currentLevel}");
+                quizData.SetLevel(level); // Ini akan auto-call LoadFromTextFile()
+                Debug.Log($"📊 After SetLevel: quizData.currentLevel = {quizData.currentLevel}");
+
+                Debug.Log($"✅ Quiz questions loaded for level {level}. Total questions available: {quizData.questions?.Length ?? 0}");
+
+                // Debug: Show sample questions
+                if (quizData.questions != null && quizData.questions.Length > 0)
+                {
+                    Debug.Log($"📝 Sample question for level {level}: {quizData.questions[0].question}");
+                }
             }
+            else
+            {
+                Debug.LogError("❌ QuizData is null! Cannot load questions.");
+            }
+        }
+        else
+        {
+            Debug.LogError("❌ GameManager.Instance is null! Cannot determine current level.");
         }
 
         // Reset key progress to 25%

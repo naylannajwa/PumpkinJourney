@@ -4,74 +4,17 @@ using UnityEngine.Audio;
 /// <summary>
 /// Audio Manager untuk mengelola semua suara dalam game PumpkinJourney
 /// Mengatur musik latar, efek suara, dan audio feedback
+/// Sekarang menggunakan sistem ScriptableObject untuk kemudahan assign audio
 /// </summary>
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    [Header("Audio Mixer")]
+    [Header("Audio Configuration")]
     [Tooltip("Audio Mixer untuk kontrol volume")]
     public AudioMixer audioMixer;
-
-    [Header("Background Music")]
-    [Tooltip("Musik latar utama game")]
-    public AudioClip mainBGM;
-    [Tooltip("Musik saat mengerjakan kuis")]
-    public AudioClip quizBGM;
-
-    [Header("Player Sounds")]
-    [Tooltip("Suara karakter loncat")]
-    public AudioClip jumpSound;
-    [Tooltip("Suara karakter mati")]
-    public AudioClip deathSound;
-    [Tooltip("Suara karakter slide")]
-    public AudioClip slideSound;
-    [Tooltip("Suara karakter landing setelah loncat")]
-    public AudioClip landSound;
-
-    [Header("UI Sounds")]
-    [Tooltip("Suara saat menekan tombol")]
-    public AudioClip buttonClickSound;
-    [Tooltip("Suara saat hover tombol")]
-    public AudioClip buttonHoverSound;
-    [Tooltip("Suara saat UI muncul")]
-    public AudioClip uiPopupSound;
-    [Tooltip("Suara saat UI hilang")]
-    public AudioClip uiCloseSound;
-
-    [Header("Gameplay Sounds")]
-    [Tooltip("Suara saat mengambil kunci")]
-    public AudioClip keyCollectSound;
-    [Tooltip("Suara saat pintu terkunci")]
-    public AudioClip doorLockedSound;
-    [Tooltip("Suara saat pintu terbuka")]
-    public AudioClip doorOpenSound;
-    [Tooltip("Suara saat mencapai pintu level selanjutnya")]
-    public AudioClip levelCompleteSound;
-    [Tooltip("Suara saat mendapat poin")]
-    public AudioClip scoreSound;
-
-    [Header("Quiz Sounds")]
-    [Tooltip("Suara saat jawaban benar")]
-    public AudioClip correctAnswerSound;
-    [Tooltip("Suara saat jawaban salah")]
-    public AudioClip wrongAnswerSound;
-    [Tooltip("Suara saat berhasil menyelesaikan kuis")]
-    public AudioClip quizCompleteSound;
-    [Tooltip("Suara saat memulai kuis")]
-    public AudioClip quizStartSound;
-    [Tooltip("Suara saat time running out")]
-    public AudioClip timeWarningSound;
-
-    [Header("Environment Sounds")]
-    [Tooltip("Suara angin atau ambient")]
-    public AudioClip windAmbientSound;
-    [Tooltip("Suara langkah kaki")]
-    public AudioClip footstepSound;
-    [Tooltip("Suara collect candy")]
-    public AudioClip candyCollectSound;
-    [Tooltip("Suara power up")]
-    public AudioClip powerUpSound;
+    [Tooltip("ScriptableObject yang berisi semua audio clips")]
+    public AudioData audioData;
 
     [Header("Audio Settings")]
     [Range(0f, 1f)]
@@ -105,7 +48,14 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        // Setup audio sources 
+        // Validasi AudioData
+        if (audioData == null)
+        {
+            Debug.LogError("❌ AudioData belum di-assign! Silakan assign AudioData di Inspector.");
+            return;
+        }
+
+        // Setup audio sources
         SetupAudioSources();
     }
 
@@ -140,6 +90,167 @@ public class AudioManager : MonoBehaviour
         ambientSource.outputAudioMixerGroup = audioMixer?.FindMatchingGroups("Ambient")[0];
     }
 
+    /// <summary>
+    /// Mendapatkan AudioClip berdasarkan AudioType
+    /// </summary>
+    private AudioClip GetAudioClip(AudioType audioType)
+    {
+        if (audioData == null)
+        {
+            Debug.LogError($"❌ AudioData belum di-assign untuk {audioType}");
+            return null;
+        }
+
+        AudioClip clip = null;
+
+        switch (audioType)
+        {
+            case AudioType.MainBGM:
+                clip = audioData.mainBGM;
+                break;
+            case AudioType.HomePageBGM:
+                clip = audioData.homePageBGM;
+                break;
+            case AudioType.QuizBGM:
+                clip = audioData.quizBGM;
+                break;
+            case AudioType.Jump:
+                clip = audioData.jumpSound;
+                break;
+            case AudioType.Death:
+                clip = audioData.deathSound;
+                break;
+            case AudioType.Slide:
+                clip = audioData.slideSound;
+                break;
+            case AudioType.Land:
+                clip = audioData.landSound;
+                break;
+            case AudioType.Footstep:
+                clip = audioData.footstepSound;
+                break;
+            case AudioType.ButtonClick:
+                clip = audioData.buttonClickSound;
+                break;
+            case AudioType.ButtonHover:
+                clip = audioData.buttonHoverSound;
+                break;
+            case AudioType.UIPopup:
+                clip = audioData.uiPopupSound;
+                break;
+            case AudioType.UIClose:
+                clip = audioData.uiCloseSound;
+                break;
+            case AudioType.Pause:
+                clip = audioData.pauseSound;
+                break;
+            case AudioType.Play:
+                clip = audioData.playSound;
+                break;
+            case AudioType.KeyCollect:
+                clip = audioData.keyCollectSound;
+                break;
+            case AudioType.DoorLocked:
+                clip = audioData.doorLockedSound;
+                break;
+            case AudioType.DoorOpen:
+                clip = audioData.doorOpenSound;
+                break;
+            case AudioType.LevelComplete:
+                clip = audioData.levelCompleteSound;
+                break;
+            case AudioType.Score:
+                clip = audioData.scoreSound;
+                break;
+            case AudioType.CandyCollect:
+                clip = audioData.candyCollectSound;
+                break;
+            case AudioType.PowerUp:
+                clip = audioData.powerUpSound;
+                break;
+            case AudioType.CorrectAnswer:
+                clip = audioData.correctAnswerSound;
+                break;
+            case AudioType.WrongAnswer:
+                clip = audioData.wrongAnswerSound;
+                break;
+            case AudioType.QuizComplete:
+                clip = audioData.quizCompleteSound;
+                break;
+            case AudioType.QuizStart:
+                clip = audioData.quizStartSound;
+                break;
+            case AudioType.TimeWarning:
+                clip = audioData.timeWarningSound;
+                break;
+            case AudioType.WindAmbient:
+                clip = audioData.windAmbientSound;
+                break;
+            default:
+                Debug.LogWarning($"⚠️ AudioType {audioType} tidak dikenali");
+                break;
+        }
+
+        if (clip == null)
+        {
+            Debug.LogWarning($"⚠️ AudioClip untuk {audioType} belum di-assign di AudioData");
+        }
+
+        return clip;
+    }
+
+    /// <summary>
+    /// Mainkan suara berdasarkan AudioType
+    /// Metode utama untuk memainkan semua jenis suara
+    /// </summary>
+    public void PlaySound(AudioType audioType)
+    {
+        AudioClip clip = GetAudioClip(audioType);
+
+        if (clip != null)
+        {
+            // Cek apakah ini BGM atau Ambient
+            if (audioType == AudioType.MainBGM || audioType == AudioType.HomePageBGM || audioType == AudioType.QuizBGM)
+            {
+                PlayBGM(clip, audioType.ToString());
+            }
+            else if (audioType == AudioType.WindAmbient)
+            {
+                PlayAmbient(clip, audioType.ToString());
+            }
+            else
+            {
+                PlaySFX(clip, audioType.ToString());
+            }
+        }
+    }
+
+    /// <summary>
+    /// Mainkan musik latar (BGM)
+    /// </summary>
+    private void PlayBGM(AudioClip clip, string bgmName)
+    {
+        if (bgmSource != null && clip != null)
+        {
+            bgmSource.clip = clip;
+            bgmSource.Play();
+            Debug.Log($"🎵 BGM: {bgmName} started");
+        }
+    }
+
+    /// <summary>
+    /// Mainkan suara ambient
+    /// </summary>
+    private void PlayAmbient(AudioClip clip, string ambientName)
+    {
+        if (ambientSource != null && clip != null)
+        {
+            ambientSource.clip = clip;
+            ambientSource.Play();
+            Debug.Log($"🌬️ Ambient: {ambientName} started");
+        }
+    }
+
     // =============================================
     // BACKGROUND MUSIC
     // =============================================
@@ -149,12 +260,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayMainBGM()
     {
-        if (bgmSource != null && mainBGM != null)
-        {
-            bgmSource.clip = mainBGM;
-            bgmSource.Play();
-            Debug.Log("🎵 Main BGM started");
-        }
+        PlaySound(AudioType.MainBGM);
     }
 
     /// <summary>
@@ -162,12 +268,31 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayQuizBGM()
     {
-        if (bgmSource != null && quizBGM != null)
-        {
-            bgmSource.clip = quizBGM;
-            bgmSource.Play();
-            Debug.Log("🎵 Quiz BGM started");
-        }
+        PlaySound(AudioType.QuizBGM);
+    }
+
+    /// <summary>
+    /// Mainkan musik home page
+    /// </summary>
+    public void PlayHomePageBGM()
+    {
+        PlaySound(AudioType.HomePageBGM);
+    }
+
+    /// <summary>
+    /// Mainkan suara pause
+    /// </summary>
+    public void PlayPauseSound()
+    {
+        PlaySound(AudioType.Pause);
+    }
+
+    /// <summary>
+    /// Mainkan suara play/start level
+    /// </summary>
+    public void PlayStartSound()
+    {
+        PlaySound(AudioType.Play);
     }
 
     /// <summary>
@@ -215,7 +340,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayJumpSound()
     {
-        PlaySFX(jumpSound, "Jump");
+        PlaySound(AudioType.Jump);
     }
 
     /// <summary>
@@ -223,7 +348,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayDeathSound()
     {
-        PlaySFX(deathSound, "Death");
+        PlaySound(AudioType.Death);
     }
 
     /// <summary>
@@ -231,7 +356,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlaySlideSound()
     {
-        PlaySFX(slideSound, "Slide");
+        PlaySound(AudioType.Slide);
     }
 
     /// <summary>
@@ -239,7 +364,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayLandSound()
     {
-        PlaySFX(landSound, "Land");
+        PlaySound(AudioType.Land);
     }
 
     /// <summary>
@@ -247,7 +372,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayFootstepSound()
     {
-        PlaySFX(footstepSound, "Footstep");
+        PlaySound(AudioType.Footstep);
     }
 
     // =============================================
@@ -259,7 +384,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayButtonClickSound()
     {
-        PlaySFX(buttonClickSound, "Button Click");
+        PlaySound(AudioType.ButtonClick);
     }
 
     /// <summary>
@@ -267,7 +392,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayButtonHoverSound()
     {
-        PlaySFX(buttonHoverSound, "Button Hover");
+        PlaySound(AudioType.ButtonHover);
     }
 
     /// <summary>
@@ -275,7 +400,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayUIPopupSound()
     {
-        PlaySFX(uiPopupSound, "UI Popup");
+        PlaySound(AudioType.UIPopup);
     }
 
     /// <summary>
@@ -283,7 +408,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayUICloseSound()
     {
-        PlaySFX(uiCloseSound, "UI Close");
+        PlaySound(AudioType.UIClose);
     }
 
     // =============================================
@@ -295,7 +420,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayKeyCollectSound()
     {
-        PlaySFX(keyCollectSound, "Key Collect");
+        PlaySound(AudioType.KeyCollect);
     }
 
     /// <summary>
@@ -303,7 +428,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayDoorLockedSound()
     {
-        PlaySFX(doorLockedSound, "Door Locked");
+        PlaySound(AudioType.DoorLocked);
     }
 
     /// <summary>
@@ -311,7 +436,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayDoorOpenSound()
     {
-        PlaySFX(doorOpenSound, "Door Open");
+        PlaySound(AudioType.DoorOpen);
     }
 
     /// <summary>
@@ -319,7 +444,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayLevelCompleteSound()
     {
-        PlaySFX(levelCompleteSound, "Level Complete");
+        PlaySound(AudioType.LevelComplete);
     }
 
     /// <summary>
@@ -327,7 +452,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayScoreSound()
     {
-        PlaySFX(scoreSound, "Score");
+        PlaySound(AudioType.Score);
     }
 
     /// <summary>
@@ -335,7 +460,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayCandyCollectSound()
     {
-        PlaySFX(candyCollectSound, "Candy Collect");
+        PlaySound(AudioType.CandyCollect);
     }
 
     /// <summary>
@@ -343,7 +468,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayPowerUpSound()
     {
-        PlaySFX(powerUpSound, "Power Up");
+        PlaySound(AudioType.PowerUp);
     }
 
     // =============================================
@@ -355,7 +480,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayCorrectAnswerSound()
     {
-        PlaySFX(correctAnswerSound, "Correct Answer");
+        PlaySound(AudioType.CorrectAnswer);
     }
 
     /// <summary>
@@ -363,7 +488,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayWrongAnswerSound()
     {
-        PlaySFX(wrongAnswerSound, "Wrong Answer");
+        PlaySound(AudioType.WrongAnswer);
     }
 
     /// <summary>
@@ -371,7 +496,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayQuizCompleteSound()
     {
-        PlaySFX(quizCompleteSound, "Quiz Complete");
+        PlaySound(AudioType.QuizComplete);
     }
 
     /// <summary>
@@ -379,7 +504,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayQuizStartSound()
     {
-        PlaySFX(quizStartSound, "Quiz Start");
+        PlaySound(AudioType.QuizStart);
     }
 
     /// <summary>
@@ -387,7 +512,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayTimeWarningSound()
     {
-        PlaySFX(timeWarningSound, "Time Warning");
+        PlaySound(AudioType.TimeWarning);
     }
 
     // =============================================
@@ -399,12 +524,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayWindAmbient()
     {
-        if (ambientSource != null && windAmbientSound != null)
-        {
-            ambientSource.clip = windAmbientSound;
-            ambientSource.Play();
-            Debug.Log("🌬️ Wind ambient started");
-        }
+        PlaySound(AudioType.WindAmbient);
     }
 
     /// <summary>

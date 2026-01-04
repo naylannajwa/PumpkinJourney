@@ -116,10 +116,12 @@ public class PumpkinMovement : MonoBehaviour
         }
         transform.localScale = localScale;
         
-        // Reset velocity
+        // Reset velocity dan physics constraints
         if (rb != null)
         {
             rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 3f; // Reset gravity ke normal
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation; // Reset constraints
         }
         
         // Reset animations - dengan safety check
@@ -344,7 +346,9 @@ public class PumpkinMovement : MonoBehaviour
     {
         if (col.CompareTag("DeadZone") || col.gameObject.name.Contains("DeadZone"))
         {
-            TakeDamage();
+            // INSTANT DEATH - langsung mati saat terkena deadzone
+            Debug.Log("💀 Player fell into deadzone - instant death!");
+            Die(); // Langsung mati tanpa efek damage
         }
     }
 
@@ -455,13 +459,20 @@ public class PumpkinMovement : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
-        rb.linearVelocity = Vector2.zero;
-        
+
+        // STOP ALL MOVEMENT IMMEDIATELY
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+            rb.gravityScale = 0f; // Matikan gravitasi agar tidak jatuh lagi
+            rb.constraints = RigidbodyConstraints2D.FreezeAll; // Freeze semua movement
+        }
+
         if (HasParameter("isDead"))
             anim.SetBool("isDead", true);
-        
-        Debug.Log("💀 Pumpkin died! Health reached 0 - Resetting level...");
-        
+
+        Debug.Log("💀 Pumpkin died! Movement stopped, resetting level...");
+
         // Panggil GameManager untuk reset level
         if (GameManager.Instance != null)
         {

@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08462ea52b29a094cabb041d1881c99b, type: 3}
+  m_Name: QuizData
+  m_EditorClassIdentifier: 
+  questions:
+  - question: Aku adalah bangunan berbentuk segitiga raksasa di Mesir, aku dibangun
+      ribuan tahun lalu sebagai makam raja, apa aku?
+    answerA: Candi Borobudur
+    answerB: Menara Pisa
+    answerC: Piramida
+    answerD: Colosseum
+    correctAnswerIndex: 2
+    correctFeedback: Hebat! Piramida adalah bukti kecerdasan peradaban Mesir Kuno.
+    wrongFeedback: Salah! Aku termasuk keajaiban dunia kuno.
+  - question: Aku adalah menara tinggi di Italia yang terkenal karena kemiringannya,
+      meski miring aku tetap berdiri ratusan tahun, siapa aku?
+    answerA: Menara Pisa
+    answerB: Menara Eiffel
+    answerC: Menara Tokyo
+    answerD: Menara Big Ben
+    correctAnswerIndex: 0
+    correctFeedback: Benar! Menara Pisa menjadi salah satu bangunan paling unik di
+      dunia.
+    wrongFeedback: Salah! Aku berada di kota Pisa dan tidak berdiri lurus.
+  - question: Aku adalah patung besar yang memegang obor, aku berdiri di Amerika
+      sebagai simbol kebebasan, siapa aku?
+    answerA: Patung Liberty
+    answerB: Patung Sphinx
+    answerC: Patung Buddha
+    answerD: Patung Moai
+    correctAnswerIndex: 0
+    correctFeedback: Bagus! Patung Liberty melambangkan harapan dan kebebasan.
+    wrongFeedback: Salah! Aku menyambut pendatang dari berbagai negara.
+  requiredCorrectAnswers: 3
+  currentLevel: 1
+  questionsPerLevel: 3
+  textFilePath: Soal Jawaban.txt
