@@ -172,6 +172,7 @@ public class QuizManager : MonoBehaviour
         if (AudioManager.Instance != null)
         {
             AudioManager.Instance.PlayQuizBGM();
+            AudioManager.Instance.PlayQuizStartSound();
         }
 
         // Show quiz panel
@@ -278,6 +279,12 @@ public class QuizManager : MonoBehaviour
         
         if (isCorrect)
         {
+            // Play correct answer sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayCorrectAnswerSound();
+            }
+
             // ✅ CORRECT ANSWER
             correctAnswersCount++;
 
@@ -304,6 +311,12 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
+            // Play wrong answer sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayWrongAnswerSound();
+            }
+
             // ❌ WRONG ANSWER - Tetap di soal yang sama
             if (feedbackText != null)
             {
@@ -500,8 +513,14 @@ IEnumerator AnimateKeyCompletion()
     
     void CompleteQuiz()
     {
+        // Play quiz complete sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayQuizCompleteSound();
+        }
+
         bool success = (correctAnswersCount >= quizData.requiredCorrectAnswers);
-        
+
         Debug.Log($"🏁 Quiz Complete! Score: {correctAnswersCount}/{quizData.questions.Length}");
         
         if (success)

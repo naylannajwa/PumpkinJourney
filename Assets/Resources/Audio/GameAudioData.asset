@@ -30,10 +30,10 @@ MonoBehaviour:
   doorOpenSound: {fileID: 8300000, guid: bd981eb8aa3227240ba871859085b785, type: 3}
   levelCompleteSound: {fileID: 8300000, guid: f893a1257682e6e4fb6dc97219cfef98, type: 3}
   scoreSound: {fileID: 8300000, guid: 9e2fbad00985c504790d9bb952b2425f, type: 3}
-  correctAnswerSound: {fileID: 0}
-  wrongAnswerSound: {fileID: 0}
-  quizCompleteSound: {fileID: 0}
-  quizStartSound: {fileID: 0}
+  correctAnswerSound: {fileID: 8300000, guid: 705d43b0e9f8d1f4a9f13a79c86268bc, type: 3}
+  wrongAnswerSound: {fileID: 8300000, guid: 9aa8e9a8188d38945a05c8621926f8b9, type: 3}
+  quizCompleteSound: {fileID: 8300000, guid: eb5ecd110617d604fbaed60125b3ae23, type: 3}
+  quizStartSound: {fileID: 8300000, guid: 5af6d388540d2fc478a868d226c92782, type: 3}
   timeWarningSound: {fileID: 0}
   windAmbientSound: {fileID: 0}
   gameOverSound: {fileID: 0}
