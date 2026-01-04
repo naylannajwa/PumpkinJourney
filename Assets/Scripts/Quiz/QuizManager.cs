@@ -252,7 +252,13 @@ public class QuizManager : MonoBehaviour
     void OnAnswerSelected(int answerIndex)
     {
         if (isAnswering) return;
-        
+
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         isAnswering = true;
         
         QuizQuestion q = quizData.questions[currentQuestionIndex];

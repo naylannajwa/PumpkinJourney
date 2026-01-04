@@ -128,6 +128,12 @@ public class GameOverManager : MonoBehaviour
     {
         Debug.Log("🔄 GameOver Restart button clicked!");
 
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         // Force resume game state first
         Time.timeScale = 1f;
         isGameOver = false;

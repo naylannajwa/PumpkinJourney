@@ -100,6 +100,12 @@ public class LevelSelectManager : MonoBehaviour
     
     void LoadLevel(string sceneName)
     {
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 

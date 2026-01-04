@@ -46,6 +46,12 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGame()
     {
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         // Load level pertama - kunci akan direset otomatis di GameManager.Start()
         // Note: AudioManager will automatically switch to MainBGM when gameplay scene loads
         GameManager.EnsureInstance();

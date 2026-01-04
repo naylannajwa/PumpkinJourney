@@ -168,12 +168,26 @@ public class PauseManager : MonoBehaviour
     public void OnResumeButtonClicked()
     {
         Debug.Log("▶️ Resume button clicked!");
+
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         StartCoroutine(ResumeWithCountdown());
     }
     
     public void OnRestartButtonClicked()
     {
         Debug.Log("🔄 Restart button clicked!");
+
+        // Play button click sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonClickSound();
+        }
+
         ResumeGame(); // Resume dulu sebelum restart
         
         // Restart level

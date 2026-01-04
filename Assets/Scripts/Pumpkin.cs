@@ -45,6 +45,8 @@ public class PumpkinMovement : MonoBehaviour
     private bool isGrounded;
     private bool isSliding;
     private bool wasGrounded; // For landing detection
+    private float footstepTimer;
+    private float footstepInterval = 0.3f; // Time between footsteps
     private float moveInput;
     private float currentSpeed;
     private float targetSpeed;
@@ -181,6 +183,7 @@ public class PumpkinMovement : MonoBehaviour
         CheckGround();
         GetInput();
         HandleJump();
+        HandleFootsteps();
         UpdateAnimations();
     }
 
@@ -301,6 +304,38 @@ public class PumpkinMovement : MonoBehaviour
 
             // Apply jump force
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+    }
+
+    void HandleFootsteps()
+    {
+        // Play footstep sound when walking/running on ground
+        if (isGrounded && !isSliding && !isDead)
+        {
+            float speed = Mathf.Abs(rb.linearVelocity.x);
+            bool isMoving = speed > 0.5f;
+
+            if (isMoving)
+            {
+                footstepTimer -= Time.deltaTime;
+                if (footstepTimer <= 0)
+                {
+                    // Play footstep sound
+                    if (AudioManager.Instance != null)
+                    {
+                        AudioManager.Instance.PlayFootstepSound();
+                    }
+
+                    // Reset timer - faster footsteps when running
+                    bool isRunning = speed > (walkSpeed + 1f);
+                    footstepTimer = isRunning ? footstepInterval * 0.7f : footstepInterval;
+                }
+            }
+            else
+            {
+                // Reset timer when not moving
+                footstepTimer = 0;
+            }
         }
     }
 

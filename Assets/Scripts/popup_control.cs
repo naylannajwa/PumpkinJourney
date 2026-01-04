@@ -44,12 +44,32 @@ public class PopupImageButton : MonoBehaviour, IPointerClickHandler, IPointerEnt
     public void OnPointerClick(PointerEventData eventData)
     {
         bool active = !popup.activeSelf;
+
+        // Play UI sound
+        if (AudioManager.Instance != null)
+        {
+            if (active)
+            {
+                AudioManager.Instance.PlayUIPopupSound();
+            }
+            else
+            {
+                AudioManager.Instance.PlayUICloseSound();
+            }
+        }
+
         popup.SetActive(active);
         backgroundDim.SetActive(active);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        // Play button hover sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayButtonHoverSound();
+        }
+
         Color c = normalColor;  // ⭐ Pakai normalColor, bukan img.color
         c.a = hoverAlpha;
         img.color = c;
