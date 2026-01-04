@@ -53,5 +53,86 @@ public class TestQuizSystem : MonoBehaviour
         }
 
         Debug.Log("✅ QUIZ SYSTEM TEST COMPLETED!");
+
+        // Test 5: Test Quiz System Only
+        // Audio testing moved to separate script
+    }
+
+    private void TestAudioSystem()
+    {
+        Debug.Log("🔊 TESTING AUDIO SYSTEM ON WINDOWS...");
+
+        // Check if AudioManager exists
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("❌ AudioManager Instance tidak ditemukan!");
+            return;
+        }
+        Debug.Log("✅ AudioManager Instance ditemukan");
+
+        // Check if AudioData is assigned
+        if (AudioManager.Instance.audioData == null)
+        {
+            Debug.LogError("❌ AudioData belum di-assign ke AudioManager!");
+            return;
+        }
+        Debug.Log("✅ AudioData di-assign ke AudioManager");
+
+        // Check basic Unity audio settings
+        CheckUnityAudioSettings();
+
+        // Test direct AudioSource playback
+        TestDirectAudioPlayback();
+
+        Debug.Log("✅ AUDIO SYSTEM TEST COMPLETED!");
+    }
+
+    private void CheckUnityAudioSettings()
+    {
+        Debug.Log("🔧 CHECKING UNITY AUDIO SETTINGS...");
+
+        // Check if audio is globally muted
+        Debug.Log($"AudioListener.pause: {AudioListener.pause}");
+        Debug.Log($"AudioListener.volume: {AudioListener.volume}");
+
+        // Check platform specific settings
+        Debug.Log($"Application.platform: {Application.platform}");
+        Debug.Log($"SystemInfo.operatingSystem: {SystemInfo.operatingSystem}");
+    }
+
+    private void TestDirectAudioPlayback()
+    {
+        Debug.Log("🎵 TESTING DIRECT AUDIO PLAYBACK...");
+
+        var audioData = AudioManager.Instance.audioData;
+
+        // Test MainBGM directly
+        if (audioData.mainBGM != null)
+        {
+            Debug.Log("🎵 Playing MainBGM directly...");
+            AudioSource.PlayClipAtPoint(audioData.mainBGM, Vector3.zero, 1.0f);
+        }
+        else
+        {
+            Debug.LogError("❌ MainBGM clip is NULL!");
+        }
+
+        // Test Pause sound directly
+        if (audioData.pauseSound != null)
+        {
+            Debug.Log("⏸️ Playing Pause sound directly...");
+            StartCoroutine(PlayPauseSoundDelayed(audioData.pauseSound));
+        }
+        else
+        {
+            Debug.LogError("❌ Pause sound clip is NULL!");
+        }
+    }
+
+    private System.Collections.IEnumerator PlayPauseSoundDelayed(AudioClip clip)
+    {
+        yield return new WaitForSeconds(2f);
+        AudioSource.PlayClipAtPoint(clip, Vector3.zero, 1.0f);
+        Debug.Log("✅ Pause sound played directly!");
     }
 }

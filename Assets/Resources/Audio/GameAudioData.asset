@@ -15,10 +15,10 @@ MonoBehaviour:
   mainBGM: {fileID: 8300000, guid: ea14efc56daa1b642ba2617cb606229c, type: 3}
   homePageBGM: {fileID: 8300000, guid: d8dfed836ae23254fab949cee7ff9040, type: 3}
   quizBGM: {fileID: 8300000, guid: 99babbda5b8081249898aec311360b7f, type: 3}
-  jumpSound: {fileID: 0}
-  deathSound: {fileID: 0}
-  slideSound: {fileID: 0}
-  landSound: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 2d1320a4e4bda3f4fa91de03c38b74f4, type: 3}
+  deathSound: {fileID: 8300000, guid: 479348c1963c8ff44b4e66285ed358c1, type: 3}
+  slideSound: {fileID: 8300000, guid: 63e9603c660cd1f49a244ec1f9accf55, type: 3}
+  landSound: {fileID: 8300000, guid: 73e6ea5d6200cf845bdd0ae4c009d3fd, type: 3}
   buttonClickSound: {fileID: 0}
   buttonHoverSound: {fileID: 0}
   uiPopupSound: {fileID: 0}
@@ -36,6 +36,7 @@ MonoBehaviour:
   quizStartSound: {fileID: 0}
   timeWarningSound: {fileID: 0}
   windAmbientSound: {fileID: 0}
-  footstepSound: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  footstepSound: {fileID: 8300000, guid: 0eb25a79c7c57754d96fe2c16cb6ac03, type: 3}
   candyCollectSound: {fileID: 0}
   powerUpSound: {fileID: 0}

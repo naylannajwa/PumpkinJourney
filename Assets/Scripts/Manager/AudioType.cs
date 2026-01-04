@@ -43,5 +43,8 @@ public enum AudioType
     TimeWarning,
 
     // Environment Sounds
-    WindAmbient
+    WindAmbient,
+
+    // Game Over Sounds
+    GameOverSound
 }

@@ -122,7 +122,14 @@ public class PauseManager : MonoBehaviour
         {
             pausePanel.SetActive(true);
             Debug.Log("⏸️ Game Paused!");
-            
+
+            // Pause BGM and play pause sound (interruptible)
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PauseBGM();
+                AudioManager.Instance.PlayPauseSoundInterruptible();
+            }
+
             // Animasi akan otomatis berjalan karena Animator component
             // JANGAN set canvas scale manual agar animasi terlihat
         }
@@ -139,6 +146,14 @@ public class PauseManager : MonoBehaviour
         {
             pausePanel.SetActive(false);
             Debug.Log("▶️ Game Resumed!");
+
+            // Stop pause sound, resume BGM and play start sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.StopSFX(); // Stop pause sound if still playing
+                AudioManager.Instance.ResumeBGM();
+                AudioManager.Instance.PlayStartSound();
+            }
 
             // Hide canvas
             Canvas canvas = pausePanel.GetComponentInParent<Canvas>();
@@ -179,6 +194,7 @@ public class PauseManager : MonoBehaviour
         Debug.Log("🏠 Home button clicked!");
         ResumeGame(); // Resume dulu sebelum pindah scene
 
+        // Note: AudioManager will automatically switch to HomePageBGM when homePage scene loads
         SceneManager.LoadScene(homeSceneName);
     }
 

@@ -168,6 +168,12 @@ public class QuizManager : MonoBehaviour
             keyProgressImage.sprite = keySprite25;
         }
 
+        // Switch to quiz BGM
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayQuizBGM();
+        }
+
         // Show quiz panel
         if (quizPanel != null)
         {
@@ -554,6 +560,12 @@ IEnumerator AnimateKeyCompletion()
 
         // Resume game
         Time.timeScale = 1;
+
+        // Return to main BGM
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMainBGM();
+        }
 
         // Callback
         onQuizComplete?.Invoke(success);

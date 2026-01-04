@@ -9,11 +9,45 @@ public class MainMenuManager : MonoBehaviour
     {
         Debug.Log("[MainMenuManager] 🏠 MainMenuManager script started!");
         levelSelectPanel.SetActive(false);
+
+        // Ensure AudioManager exists (create if not exists)
+        EnsureAudioManagerExists();
+        // Note: AudioManager will automatically play HomePageBGM when scene loads
+    }
+
+    private void EnsureAudioManagerExists()
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.Log("🎵 Creating AudioManager instance...");
+            GameObject audioManagerObj = new GameObject("AudioManager");
+            AudioManager audioManager = audioManagerObj.AddComponent<AudioManager>();
+
+            // Load and assign AudioData
+            AudioData audioData = Resources.Load<AudioData>("Audio/GameAudioData");
+            if (audioData != null)
+            {
+                audioManager.audioData = audioData;
+                Debug.Log("✅ AudioData assigned to AudioManager");
+            }
+            else
+            {
+                Debug.LogError("❌ Could not load AudioData from Resources/Audio/GameAudioData");
+            }
+
+            DontDestroyOnLoad(audioManagerObj);
+            Debug.Log("✅ AudioManager created successfully!");
+        }
+        else
+        {
+            Debug.Log("✅ AudioManager already exists");
+        }
     }
 
     public void PlayGame()
     {
         // Load level pertama - kunci akan direset otomatis di GameManager.Start()
+        // Note: AudioManager will automatically switch to MainBGM when gameplay scene loads
         GameManager.EnsureInstance();
         if (GameManager.Instance != null)
         {

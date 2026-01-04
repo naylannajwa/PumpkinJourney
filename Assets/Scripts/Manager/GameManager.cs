@@ -251,16 +251,19 @@ public class GameManager : MonoBehaviour
     // TAMBAH METHOD BARU: PlayerDied - dipanggil saat player health = 0
     public void PlayerDied()
     {
-        Debug.Log("💀 Player died - resetting level...");
-        
-        // Reset game state
-        hasKey = false;
-        coinCount = 0;
-        
-        // Reload current scene
-        string currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene);
-        
-        Debug.Log($"🔄 Level reset: {currentScene}");
+        Debug.Log("💀 Player died - showing game over...");
+
+        // Show game over panel instead of immediate reset
+        GameOverManager.EnsureInstance();
+        if (GameOverManager.Instance != null)
+        {
+            GameOverManager.Instance.ShowGameOver();
+        }
+        else
+        {
+            // Fallback: reset level immediately
+            Debug.LogWarning("⚠️ GameOverManager not found, resetting level...");
+            RestartLevel();
+        }
     }
 }

@@ -68,6 +68,10 @@ public class AudioData : ScriptableObject
     [Header("Environment Sounds")]
     [Tooltip("Suara angin atau ambient")]
     public AudioClip windAmbientSound;
+
+    [Header("Game Over Sounds")]
+    [Tooltip("Suara saat game over")]
+    public AudioClip gameOverSound;
     [Tooltip("Suara langkah kaki")]
     public AudioClip footstepSound;
     [Tooltip("Suara collect candy")]

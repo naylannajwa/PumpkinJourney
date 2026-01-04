@@ -44,6 +44,7 @@ public class PumpkinMovement : MonoBehaviour
     private Vector3 localScale;
     private bool isGrounded;
     private bool isSliding;
+    private bool wasGrounded; // For landing detection
     private float moveInput;
     private float currentSpeed;
     private float targetSpeed;
@@ -193,8 +194,19 @@ public class PumpkinMovement : MonoBehaviour
 
     void CheckGround()
     {
+        bool wasGroundedBefore = isGrounded;
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        
+
+        // Detect landing (was in air, now on ground)
+        if (!wasGroundedBefore && isGrounded && !isDead)
+        {
+            // Play land sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayLandSound();
+            }
+        }
+
         // Reset slide saat landing
         if (isGrounded && !Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.DownArrow))
         {
@@ -217,6 +229,13 @@ public class PumpkinMovement : MonoBehaviour
             if (slideInput)
             {
                 targetSpeed = slideSpeed;
+
+                // Play slide sound only when starting to slide
+                if (!isSliding && AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PlaySlideSound();
+                }
+
                 isSliding = true;
             }
             else if (runInput)
@@ -271,9 +290,15 @@ public class PumpkinMovement : MonoBehaviour
         // Jump hanya bisa saat grounded dan TIDAK sliding
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isSliding)
         {
+            // Play jump sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlayJumpSound();
+            }
+
             // Reset velocity Y untuk jump konsisten
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f);
-            
+
             // Apply jump force
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
@@ -459,6 +484,12 @@ public class PumpkinMovement : MonoBehaviour
         if (isDead) return;
 
         isDead = true;
+
+        // Play death sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayDeathSound();
+        }
 
         // STOP ALL MOVEMENT IMMEDIATELY
         if (rb != null)

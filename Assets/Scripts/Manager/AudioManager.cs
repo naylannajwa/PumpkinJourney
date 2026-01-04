@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Audio Manager untuk mengelola semua suara dalam game PumpkinJourney
@@ -31,6 +32,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource bgmSource;
     private AudioSource sfxSource;
     private AudioSource ambientSource;
+    private string lastSceneName;
 
     void Awake()
     {
@@ -57,13 +59,71 @@ public class AudioManager : MonoBehaviour
 
         // Setup audio sources
         SetupAudioSources();
+
+        // Subscribe to scene change events
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
-        // Start main BGM
-        PlayMainBGM();
+        // Check current scene and play appropriate BGM
+        UpdateBGMForCurrentScene();
         Debug.Log("🎵 AudioManager Start complete!");
+    }
+
+    /// <summary>
+    /// Called when a scene is loaded
+    /// </summary>
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log($"🎵 Scene loaded: {scene.name}");
+        UpdateBGMForCurrentScene();
+    }
+
+    /// <summary>
+    /// Update BGM based on current scene
+    /// </summary>
+    private void UpdateBGMForCurrentScene()
+    {
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        // Check if this is the same scene (level restart)
+        bool isSceneRestart = (lastSceneName == currentSceneName);
+        lastSceneName = currentSceneName;
+
+        switch (currentSceneName)
+        {
+            case "homePage":
+                if (audioData != null && audioData.homePageBGM != null)
+                {
+                    PlayHomePageBGM();
+                    Debug.Log("🎵 Playing HomePageBGM for homePage scene");
+                }
+                break;
+
+            case "gameplay":
+            case "gameplay2":
+            case "gameplay3":
+            case "gameplay4":
+                if (audioData != null && audioData.mainBGM != null)
+                {
+                    // If restarting the same scene, don't restart BGM
+                    if (!isSceneRestart)
+                    {
+                        PlayMainBGM();
+                        Debug.Log("🎵 Playing MainBGM for gameplay scene");
+                    }
+                    else
+                    {
+                        Debug.Log("🎵 Keeping current MainBGM position (scene restart)");
+                    }
+                }
+                break;
+
+            default:
+                Debug.Log($"🎵 No specific BGM for scene: {currentSceneName}");
+                break;
+        }
     }
 
     /// <summary>
@@ -185,6 +245,9 @@ public class AudioManager : MonoBehaviour
                 break;
             case AudioType.WindAmbient:
                 clip = audioData.windAmbientSound;
+                break;
+            case AudioType.GameOverSound:
+                clip = audioData.gameOverSound;
                 break;
             default:
                 Debug.LogWarning($"⚠️ AudioType {audioType} tidak dikenali");
@@ -527,6 +590,18 @@ public class AudioManager : MonoBehaviour
         PlaySound(AudioType.WindAmbient);
     }
 
+    // =============================================
+    // GAME OVER SOUNDS
+    // =============================================
+
+    /// <summary>
+    /// Mainkan suara game over
+    /// </summary>
+    public void PlayGameOverSound()
+    {
+        PlaySound(AudioType.GameOverSound);
+    }
+
     /// <summary>
     /// Stop suara ambient
     /// </summary>
@@ -537,6 +612,12 @@ public class AudioManager : MonoBehaviour
             ambientSource.Stop();
             Debug.Log("🌬️ Ambient stopped");
         }
+    }
+
+    void OnDestroy()
+    {
+        // Unsubscribe from scene change events
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
     // =============================================
@@ -600,5 +681,33 @@ public class AudioManager : MonoBehaviour
             bgmSource.volume = bgmVolume;
         }
         Debug.Log($"🔊 BGM volume set to {bgmVolume}");
+    }
+
+    /// <summary>
+    /// Stop all SFX
+    /// </summary>
+    public void StopSFX()
+    {
+        if (sfxSource != null)
+        {
+            sfxSource.Stop();
+            Debug.Log("🔊 SFX stopped");
+        }
+    }
+
+    /// <summary>
+    /// Play pause sound (can be stopped)
+    /// </summary>
+    public void PlayPauseSoundInterruptible()
+    {
+        AudioClip clip = GetAudioClip(AudioType.Pause);
+        if (sfxSource != null && clip != null)
+        {
+            sfxSource.clip = clip;
+            sfxSource.loop = false; // Ensure not looping
+            sfxSource.volume = sfxVolume; // Set volume
+            sfxSource.Play();
+            Debug.Log("⏸️ Pause sound started (interruptible)");
+        }
     }
 }
