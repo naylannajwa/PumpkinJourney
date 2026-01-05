@@ -28,6 +28,13 @@ namespace PumpkinJourney.Video
 
             if (videoPlayer != null && endingVideo != null)
             {
+                // Pause BGM before playing ending video
+                if (AudioManager.Instance != null)
+                {
+                    AudioManager.Instance.PauseBGM();
+                    Debug.Log("🎵 BGM paused for ending video");
+                }
+
                 videoPlayer.clip = endingVideo;
                 videoPlayer.Play();
 
@@ -59,6 +66,9 @@ namespace PumpkinJourney.Video
             // Stop video rendering to prevent blue screen
             vp.Stop();
             vp.enabled = false;
+
+            // Note: BGM will automatically switch to HomePageBGM when homePage scene loads
+            // No need to manually resume BGM here
 
             // Use fade transition if fade image is assigned
             if (fadeImage != null && fadeDuration > 0)
