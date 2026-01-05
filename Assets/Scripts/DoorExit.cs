@@ -68,7 +68,16 @@ public class DoorExit : MonoBehaviour
                     AudioManager.Instance.PlayDoorOpenSound();
                 }
 
-                // SUDAH punya kunci - LANGSUNG SHOW LEVEL COMPLETE!
+                // Check if this is level 4 completion (final level)
+                if (levelToUnlock == 4)
+                {
+                    // FINAL LEVEL COMPLETED - PLAY ENDING VIDEO!
+                    Debug.Log("[DoorExit] 🎬 FINAL LEVEL COMPLETED! Playing ending video...");
+                    PlayEndingVideo();
+                    return; // Don't show level complete screen
+                }
+
+                // Normal level completion
                 Debug.Log("[DoorExit] 🎉 Player has key! Showing level complete screen...");
 
                 // 🔧 Unlock next level SEBELUM show level complete!
@@ -250,5 +259,14 @@ public class DoorExit : MonoBehaviour
             int status = PlayerPrefs.GetInt($"Level{i}Unlocked", 0);
             Debug.Log($"[DoorExit] 🔍 Level{i} Unlocked Status: {status}");
         }
+    }
+
+    /// <summary>
+    /// Play ending video for final level completion
+    /// </summary>
+    void PlayEndingVideo()
+    {
+        // Load ending scene
+        UnityEngine.SceneManagement.SceneManager.LoadScene("EndingScene");
     }
 }

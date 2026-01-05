@@ -129,7 +129,7 @@ public class PauseManager : MonoBehaviour
                 AudioManager.Instance.PauseBGM();
                 AudioManager.Instance.PlayPauseSoundInterruptible();
             }
-
+            
             // Animasi akan otomatis berjalan karena Animator component
             // JANGAN set canvas scale manual agar animasi terlihat
         }
