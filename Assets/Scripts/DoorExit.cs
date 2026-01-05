@@ -69,7 +69,9 @@ public class DoorExit : MonoBehaviour
                 }
 
                 // Check if this is level 4 completion (final level)
-                if (levelToUnlock == 4)
+                // Only trigger ending video if we're actually in gameplay4 scene
+                string currentScene = SceneManager.GetActiveScene().name;
+                if (levelToUnlock == 4 && currentScene == "gameplay4")
                 {
                     // FINAL LEVEL COMPLETED - PLAY ENDING VIDEO!
                     Debug.Log("[DoorExit] 🎬 FINAL LEVEL COMPLETED! Playing ending video...");

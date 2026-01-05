@@ -22,6 +22,12 @@ public class QuizData : ScriptableObject
     [Tooltip("Path to the text file containing questions (relative to Assets folder)")]
     public string textFilePath = "Soal Jawaban.txt";
 
+    [Header("Level-Specific Files (Optional)")]
+    [Tooltip("Use separate files per level")]
+    public bool useLevelSpecificFiles = true;
+    [Tooltip("Base filename for level files (e.g., 'Soal_Level_')")]
+    public string levelFilePrefix = "Soal_Level_";
+
     /// <summary>
     /// Set the current level for question loading
     /// </summary>
@@ -39,7 +45,26 @@ public class QuizData : ScriptableObject
     /// </summary>
     public void LoadFromTextFile()
     {
-        string fullPath = Path.Combine(Application.dataPath, textFilePath);
+        string actualFilePath = textFilePath;
+
+        // Use level-specific file if enabled
+        if (useLevelSpecificFiles)
+        {
+            string levelFileName = $"{levelFilePrefix}{currentLevel}.txt";
+            string levelFilePath = Path.Combine(Application.dataPath, levelFileName);
+
+            if (File.Exists(levelFilePath))
+            {
+                actualFilePath = levelFileName;
+                Debug.Log($"📄 Using level-specific file: {levelFileName}");
+            }
+            else
+            {
+                Debug.Log($"⚠️ Level-specific file not found: {levelFileName}, using default file");
+            }
+        }
+
+        string fullPath = Path.Combine(Application.dataPath, actualFilePath);
 
         if (!File.Exists(fullPath))
         {
@@ -154,29 +179,46 @@ public class QuizData : ScriptableObject
             }
         }
 
-        // Filter questions for current level
-        int startIndex = (currentLevel - 1) * questionsPerLevel;
-        int endIndex = Mathf.Min(startIndex + questionsPerLevel, loadedQuestions.Count);
-
-        Debug.Log($"🎯 Filtering for Level {currentLevel}: startIndex={startIndex}, questionsPerLevel={questionsPerLevel}, loadedQuestions.Count={loadedQuestions.Count}");
-
-        if (startIndex >= loadedQuestions.Count)
+        // If using level-specific files, use all loaded questions
+        // If using single file, filter by level
+        if (useLevelSpecificFiles)
         {
-            Debug.LogWarning($"⚠️ No questions available for level {currentLevel}. Start index {startIndex} >= total questions {loadedQuestions.Count}");
-            questions = new QuizQuestion[0];
-        }
-        else
-        {
-            int questionCount = endIndex - startIndex;
-            List<QuizQuestion> levelQuestions = loadedQuestions.GetRange(startIndex, questionCount);
-            questions = levelQuestions.ToArray();
+            // Use all questions from the level-specific file
+            questions = loadedQuestions.ToArray();
+            Debug.Log($"✅ Loaded {questions.Length} questions from level-specific file for level {currentLevel}");
 
-            Debug.Log($"✅ Loaded {questions.Length} questions for level {currentLevel} (indices {startIndex}-{endIndex-1})");
-
-            // Debug: Show first question of this level
+            // Debug: Show first question
             if (questions.Length > 0)
             {
                 Debug.Log($"📝 Level {currentLevel} first question: {questions[0].question}");
+            }
+        }
+        else
+        {
+            // Legacy filtering for single file
+            int startIndex = (currentLevel - 1) * questionsPerLevel;
+            int endIndex = Mathf.Min(startIndex + questionsPerLevel, loadedQuestions.Count);
+
+            Debug.Log($"🎯 Filtering for Level {currentLevel}: startIndex={startIndex}, questionsPerLevel={questionsPerLevel}, loadedQuestions.Count={loadedQuestions.Count}");
+
+            if (startIndex >= loadedQuestions.Count)
+            {
+                Debug.LogWarning($"⚠️ No questions available for level {currentLevel}. Start index {startIndex} >= total questions {loadedQuestions.Count}");
+                questions = new QuizQuestion[0];
+            }
+            else
+            {
+                int questionCount = endIndex - startIndex;
+                List<QuizQuestion> levelQuestions = loadedQuestions.GetRange(startIndex, questionCount);
+                questions = levelQuestions.ToArray();
+
+                Debug.Log($"✅ Loaded {questions.Length} questions for level {currentLevel} (indices {startIndex}-{endIndex-1})");
+
+                // Debug: Show first question of this level
+                if (questions.Length > 0)
+                {
+                    Debug.Log($"📝 Level {currentLevel} first question: {questions[0].question}");
+                }
             }
         }
     }

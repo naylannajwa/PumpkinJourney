@@ -261,6 +261,8 @@ public class QuizManager : MonoBehaviour
         }
 
         isAnswering = true;
+
+        Debug.Log($"🎯 Player selected answer {answerIndex} for question {currentQuestionIndex + 1}");
         
         QuizQuestion q = quizData.questions[currentQuestionIndex];
         
@@ -297,10 +299,10 @@ public class QuizManager : MonoBehaviour
             // Animate key progress
             StartCoroutine(AnimateKeyProgress(correctAnswersCount));
 
-            // Check if we have answered all questions correctly
-            if (currentQuestionIndex >= quizData.questions.Length - 1)
+            // Check if we have enough correct answers to complete quiz
+            if (correctAnswersCount >= quizData.requiredCorrectAnswers)
             {
-                Debug.Log("🎉 All questions answered correctly! Completing quiz...");
+                Debug.Log($"🎉 Got {correctAnswersCount} correct answers! Completing quiz...");
                 StartCoroutine(CompleteQuizEarly());
             }
             else

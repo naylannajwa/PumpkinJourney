@@ -1,0 +1,26 @@
+Hasil dari 15 + 27 adalah …
++32
++40
++42
++52
+42
+Benar! Penjumlahan ini menghasilkan angka lebih dari 40.
+Salah! Coba jumlahkan puluhan dan satuannya satu per satu.
+
+Hasil dari 6 × 8 adalah …
++42
++46
++56
++48
+48
+Benar! Perkalian adalah penjumlahan berulang.
+Salah! Coba tambahkan angka 6 sebanyak 8 kali.
+
+Keliling persegi dengan panjang sisi 12 cm adalah …
++24 cm
++36 cm
++144 cm
++48 cm
+48 cm
+Benar! Keliling persegi adalah 4 kali panjang sisi.
+Salah! Ingat, keliling berarti menjumlahkan semua sisi.

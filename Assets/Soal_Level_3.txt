@@ -1,0 +1,26 @@
+Aku adalah hewan yang memakan tumbuhan saja, seperti rumput dan daun, aku disebut apa?
++Karnivora
++Herbivora
++Omnivora
++Insektivora
+Herbivora
+Benar! Herbivora mendapatkan energi dari tumbuhan.
+Salah! Aku tidak memakan daging sama sekali.
+
+Aku adalah hewan yang memakan tumbuhan dan daging sekaligus, seperti manusia, apa aku?
++Herbivora
++Karnivora
++Frugivora
++Omnivora
+Omnivora
+Bagus! Omnivora punya menu makan yang beragam.
+Salah! Aku tidak pilih-pilih makanan.
+
+Aku adalah cara berkembang biak hewan dengan melahirkan anak, seperti kucing dan sapi, apa aku?
++Ovipar
++Ovovivipar
++Vivipar
++Bertunas
+Vivipar
+Benar! Anak hewan lahir langsung dari tubuh induknya.
+Salah! Aku tidak menggunakan telur.

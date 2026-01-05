@@ -1,16 +1,45 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-[Uu]ser[Ss]ettings/
+# Unity
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+*.exe
+*.app
+*.apk
+*.aab
+
+# Visual Studio
+.vs/
 *.csproj
-*.unityproj
 *.sln
-*.user
-*.pidb
-*.booproj
-*.svd
-.vscode/
-.idea/
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+*.log.meta
+
+# Asset bundles
+*.assetbundle
+*.unitypackage
+
+# Video/Audio cache
+*.wav.meta
+*.mp4.meta
+*.mov.meta
+
+# Build folders
+Build_Windows/
+Build_Android/
+Build_WebGL/
+
+# Node modules (jika ada)
+node_modules/
