@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.IO;
 
 [CreateAssetMenu(fileName = "NewQuizData", menuName = "Game/Quiz Data", order = 1)]
 public class QuizData : ScriptableObject
@@ -19,8 +18,8 @@ public class QuizData : ScriptableObject
     public int questionsPerLevel = 3;
 
     [Header("Load from Text File")]
-    [Tooltip("Path to the text file containing questions (relative to Assets folder)")]
-    public string textFilePath = "Soal Jawaban.txt";
+    [Tooltip("Path to the text file in Resources/Quiz/")]
+    public string textFilePath = "Quiz/Soal_Jawaban";
 
     [Header("Level-Specific Files (Optional)")]
     [Tooltip("Use separate files per level")]
@@ -41,7 +40,7 @@ public class QuizData : ScriptableObject
     }
 
     /// <summary>
-    /// Load questions from text file
+    /// Load questions from text file using Resources
     /// </summary>
     public void LoadFromTextFile()
     {
@@ -50,29 +49,31 @@ public class QuizData : ScriptableObject
         // Use level-specific file if enabled
         if (useLevelSpecificFiles)
         {
-            string levelFileName = $"{levelFilePrefix}{currentLevel}.txt";
-            string levelFilePath = Path.Combine(Application.dataPath, levelFileName);
+            string levelFileName = $"{levelFilePrefix}{currentLevel}"; // No .txt extension for Resources
+            TextAsset levelAsset = Resources.Load<TextAsset>($"Quiz/{levelFileName}");
 
-            if (File.Exists(levelFilePath))
+            if (levelAsset != null)
             {
-                actualFilePath = levelFileName;
-                Debug.Log($"📄 Using level-specific file: {levelFileName}");
+                actualFilePath = $"Quiz/{levelFileName}";
+                Debug.Log($"📄 Using level-specific TextAsset: {levelFileName}");
             }
             else
             {
-                Debug.Log($"⚠️ Level-specific file not found: {levelFileName}, using default file");
+                Debug.Log($"⚠️ Level-specific TextAsset not found: {levelFileName}, using default");
             }
         }
 
-        string fullPath = Path.Combine(Application.dataPath, actualFilePath);
+        // Load the TextAsset
+        string resourcesPath = actualFilePath;
+        TextAsset textAsset = Resources.Load<TextAsset>(resourcesPath);
 
-        if (!File.Exists(fullPath))
+        if (textAsset == null)
         {
-            Debug.LogError($"❌ Text file not found: {fullPath}");
+            Debug.LogError($"❌ TextAsset not found in Resources: {resourcesPath}");
             return;
         }
 
-        string[] lines = File.ReadAllLines(fullPath);
+        string[] lines = textAsset.text.Split('\n'); // Split by newlines
         List<QuizQuestion> loadedQuestions = new List<QuizQuestion>();
 
         int i = 0;
